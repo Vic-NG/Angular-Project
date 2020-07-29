@@ -119,6 +119,15 @@
           }
         }
       }
-    }},
-  "defaultProject": "ubuntu-project"
+    }
+  },
+  "defaultProject": "ubuntu-project",
+  "cli": {
+    "analytics": "c755e8ae-0a84-4595-95df-7a606e2dc612"
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

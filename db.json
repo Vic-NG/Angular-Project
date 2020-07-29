@@ -1,0 +1,12 @@
+{
+  "formRegisterSchema": [
+    {
+      "userName": null,
+      "email": null,
+      "country": null,
+      "adress": null,
+      "password": null,
+      "confirmPassword": null
+    }
+  ]
+}
