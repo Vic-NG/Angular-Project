@@ -1,99 +1,62 @@
-<h1>CADASTRO</h1>
-
-<form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
-  <label>
-    User:
-  </label>
-  <div>
-    <input
-      type="text"
-      placeholder="Crie um usuário."
-      formControlName="userName"
-      [ngClass]="aplicaCssErro('userName')"
-    />
-    <app-campo-control-erro
-      [mostrarErro]="verificaValidTouched('userName')"
-      msgErro="Nome é obrigatório."
-    ></app-campo-control-erro>
-  </div>
-  <label>
-    E-mail:
-  </label>
-  <div>
-    <input
-      type="text"
-      placeholder="Digite seu E-mail."
-      formControlName="email"
-      [ngClass]="aplicaCssErro('email')"
-    />
-    <app-campo-control-erro
-      [mostrarErro]="verificaValidTouched('email')"
-      msgErro="E-mail é obrigatório."
-    ></app-campo-control-erro>
-  </div>
-  <label>
-    Country:
-  </label>
-  <div>
-    <input
-      type="text"
-      placeholder="Digite sua cidade."
-      formControlName="country"
-      [ngClass]="aplicaCssErro('country')"
-    />
-    <app-campo-control-erro
-      [mostrarErro]="verificaValidTouched('country')"
-      msgErro="Cidade é obrigatório."
-    ></app-campo-control-erro>
-  </div>
-  <label>
-    Adress:
-  </label>
-  <div>
-    <input
-      type="text"
-      placeholder="Digite seu endereço."
-      formControlName="adress"
-      [ngClass]="aplicaCssErro('adress')"
-    />
-    <app-campo-control-erro
-    [mostrarErro]="verificaValidTouched('adress')"
-    msgErro="Endereço é obrigatório."
-  ></app-campo-control-erro>
-  </div>
-  <label>
-    Password:
-  </label>
-  <div>
-    <input
-      type="password"
-      placeholder="Crie uma senha."
-      formControlName="password"
-      [ngClass]="aplicaCssErro('password')"
-    /> <app-campo-control-erro
-    [mostrarErro]="verificaValidTouched('password')"
-    msgErro="Senha é obrigatório."
-  ></app-campo-control-erro>
-  </div>
-  <label>
-    Confirm Password:
-  </label>
-  <div>
-    <input
-      type="password"
-      placeholder="Confirme sua senha."
-      formControlName="confirmPassword"
-      [ngClass]="aplicaCssErro('confirmPassword')"
-    />
-    <app-campo-control-erro
-    [mostrarErro]="verificaValidTouched('confirmPassword')"
-    msgErro="Senha é obrigatório."
-  ></app-campo-control-erro>
-  </div>
-
-  <div>
-    <button type="submit" class="button">Confirm</button>
-    <button class="button" (click)="registerCancel()">Cancel</button>
-  </div>
-  <app-form-debug [form]="formRegister"></app-form-debug>
-</form>
+<body>
+  <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+    <div class='container'>
+      <h1>CADASTRO</h1>
+  
+      <label> User: </label>
+  
+      <div>
+        <input
+          floatLabel=”never”
+          type="text"
+          placeholder="Crie seu usuário."
+          formControlName="name"
+          [ngClass]="aplicaCssErro('name')"
+        />
+  
+        <app-campo-control-erro
+          [mostrarErro]="verificaValidTouched('name')"
+          msgErro="Nome é obrigatório."
+        ></app-campo-control-erro>
+      </div>
+  
+      <label> E-mail: </label>
+  
+      <div>
+        <input
+          type="text"
+          placeholder="Digite seu E-mail."
+          formControlName="email"
+          [ngClass]="aplicaCssErro('email')"
+        />
+        <app-campo-control-erro
+          [mostrarErro]="verificaValidTouched('email')"
+          msgErro="E-mail é obrigatório."
+        ></app-campo-control-erro>
+      </div>
+  
+      <label> Password: </label>
+  
+      <div>
+        <input
+          type="password"
+          placeholder="Crie uma senha."
+          formControlName="password"
+          [ngClass]="aplicaCssErro('password')"
+        />
+  
+        <app-campo-control-erro
+          [mostrarErro]="verificaValidTouched('password')"
+          msgErro="Senha é obrigatório."
+        ></app-campo-control-erro>
+      </div>
+  
+      <div>
+        <button type="submit" class="button">Confirm</button>
+        <button class="button" (click)="registerCancel()">Cancel</button>
+      </div>
+  
+      <app-form-debug [form]="formRegister"></app-form-debug>
+    </div>
+  </form>
+</body>

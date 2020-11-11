@@ -1,12 +1,14 @@
 import { ServicesService } from './../../services.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CadastroComponent implements OnInit {
   formRegister: FormGroup;
@@ -29,7 +31,7 @@ export class CadastroComponent implements OnInit {
       (dados) => {
         console.log(dados);
       },
-      (error: any) => alert("erro")
+      (error: any) => console.log(error)
     );
   }
 
@@ -70,12 +72,9 @@ export class CadastroComponent implements OnInit {
  */
   ngOnInit() {
     this.formRegister = this.formBuilder.group({
-      userName: [null, [Validators.required]],
+      name: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
-      country: [null, [Validators.required]],
-      adress: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      confirmPassword: [null, [Validators.required]],
+      password: [null, [Validators.required]]
     });
 
     /* if (

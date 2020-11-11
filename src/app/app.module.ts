@@ -10,6 +10,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     CadastroModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
     
   ],
   providers: [],

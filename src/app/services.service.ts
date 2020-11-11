@@ -4,11 +4,15 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
+
 export class ServicesService {
+
+  url = 'https://localhost:3000/users'
+
   constructor(private http: HttpClient) {}
 
   registerService(a) {
-    return this.http.post('http://localhost:3000/formRegisterSchema', a);
+    return this.http.post(`${this.url}/create`, a, {headers: {'Content-type': 'application/json'}});
   }
 
 }
