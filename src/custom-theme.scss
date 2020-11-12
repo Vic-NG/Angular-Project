@@ -12,24 +12,24 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$ubuntu-project-primary: mat-palette($mat-indigo);
-$ubuntu-project-accent: mat-palette($mat-pink, A200, A100, A400);
+$angular-project-primary: mat-palette($mat-indigo);
+$angular-project-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$ubuntu-project-warn: mat-palette($mat-red);
+$angular-project-warn: mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$ubuntu-project-theme: mat-light-theme((
+$angular-project-theme: mat-light-theme((
   color: (
-    primary: $ubuntu-project-primary,
-    accent: $ubuntu-project-accent,
-    warn: $ubuntu-project-warn,
+    primary: $angular-project-primary,
+    accent: $angular-project-accent,
+    warn: $angular-project-warn,
   )
 ));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($ubuntu-project-theme);
+@include angular-material-theme($angular-project-theme);
 

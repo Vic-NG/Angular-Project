@@ -1,5 +1,5 @@
 import { ServicesService } from './../../services.service';
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css'],
-  encapsulation: ViewEncapsulation.None
+  
 })
 export class CadastroComponent implements OnInit {
   formRegister: FormGroup;
@@ -24,7 +24,12 @@ export class CadastroComponent implements OnInit {
     console.log(this.formRegister);
 
     if (!this.formRegister.valid) {
-      return;
+      console.log('formulario invalido');
+      Object.keys(this.formRegister.controls).forEach((campo) => {
+        console.log(campo);
+        const controle = this.formRegister.get(campo);
+        controle.markAsDirty();
+      })
     }
 
     this.service.registerService(this.formRegister.value).subscribe(
@@ -42,7 +47,7 @@ export class CadastroComponent implements OnInit {
   verificaValidTouched(campo: string) {
     return (
       !this.formRegister.get(campo).valid &&
-      this.formRegister.get(campo).touched
+      (this.formRegister.get(campo).touched || this.formRegister.get(campo).dirty)
     );
   }
 

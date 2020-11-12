@@ -1,29 +1,36 @@
 <body>
-  <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+  <form class="formRegister" [formGroup]="formRegister" (ngSubmit)="onSubmit()">
     <div class='container'>
       <h1>CADASTRO</h1>
-  
-      <label> User: </label>
-  
-      <div>
+
+
+      <div class="field">
+        <input type="text" name="fullname" id="fullname" placeholder="Nome">
+        <label for="fullname">Nome</label>
+      </div>
+
+      <!-- <div class="divRegister">
         <input
+          class="input-register"
           floatLabel=”never”
           type="text"
-          placeholder="Crie seu usuário."
           formControlName="name"
           [ngClass]="aplicaCssErro('name')"
         />
+        <label class='teste' for=”firstName”>First name</label> 
   
         <app-campo-control-erro
           [mostrarErro]="verificaValidTouched('name')"
           msgErro="Nome é obrigatório."
         ></app-campo-control-erro>
-      </div>
-  
+      </div> -->
+
+  <!-- 
       <label> E-mail: </label>
   
       <div>
         <input
+          class="input-register"
           type="text"
           placeholder="Digite seu E-mail."
           formControlName="email"
@@ -35,10 +42,11 @@
         ></app-campo-control-erro>
       </div>
   
-      <label> Password: </label>
+      <label> Password: </label> -->
   
-      <div>
+     <!--  <div>
         <input
+          class="input-register"
           type="password"
           placeholder="Crie uma senha."
           formControlName="password"
@@ -49,7 +57,7 @@
           [mostrarErro]="verificaValidTouched('password')"
           msgErro="Senha é obrigatório."
         ></app-campo-control-erro>
-      </div>
+      </div> -->
   
       <div>
         <button type="submit" class="button">Confirm</button>
