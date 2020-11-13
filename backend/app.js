@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const config = require('./config/config');
-
+const cors = require('cors')
 const url = config.bd_string;
 const options = {poolSize: 5, useNewUrlParser: true, useUnifiedTopology: true};
 
@@ -25,6 +25,7 @@ mongoose.connection.on('connected', () => {
 //BODY PARSER
 app.use(bodyParser.urlencoded( {extended: false}));
 app.use(bodyParser.json());
+app.use(cors());
 
 
 const indexRoute = require('./Routes/index');
