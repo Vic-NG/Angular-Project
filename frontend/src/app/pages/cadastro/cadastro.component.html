@@ -5,25 +5,40 @@
 
 
       <div class="field">
-        <input type="text" name="fullname" id="fullname" placeholder="Nome">
-        <label for="fullname">Nome</label>
+        <input
+        name="fullname"
+        id="fullname"
+        floatLabel=”never”
+        type="text"
+        placeholder="Digite seu nome"
+        formControlName="name"
+        [ngClass]="aplicaCssErro('name')"
+      />
+        <label for="fullname">Digite seu nome</label>
       </div>
 
-      <!-- <div class="divRegister">
+      <app-campo-control-erro
+        [mostrarErro]="verificaValidTouched('name')"
+        msgErro="Nome é obrigatório."
+      ></app-campo-control-erro>  
+
+      <div class="field">
         <input
-          class="input-register"
-          floatLabel=”never”
-          type="text"
-          formControlName="name"
-          [ngClass]="aplicaCssErro('name')"
-        />
-        <label class='teste' for=”firstName”>First name</label> 
-  
-        <app-campo-control-erro
-          [mostrarErro]="verificaValidTouched('name')"
-          msgErro="Nome é obrigatório."
-        ></app-campo-control-erro>
-      </div> -->
+        name="email"
+        id="email"
+        type="text"
+        placeholder="Digite seu E-mail."
+        formControlName="email"
+        [ngClass]="aplicaCssErro('email')"
+      />
+      <label for="email">Digite seu e-mail</label>
+    </div>
+
+    <app-campo-control-erro
+      [mostrarErro]="verificaValidTouched('email')"
+      msgErro="E-mail é obrigatório."
+    ></app-campo-control-erro>
+
 
   <!-- 
       <label> E-mail: </label>

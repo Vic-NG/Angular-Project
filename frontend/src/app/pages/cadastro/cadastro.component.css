@@ -19,23 +19,22 @@
   }
   
   input {
-    font-size: 1.5em;
+    height: 35px;
+    width: 20%;
+    margin: 0 auto;
+    font-size: 1.0em;
     border: 0;
-    border-bottom: 1px solid #ccc;
-    font-family: inherit;
-    -webkit-appearance: none;
-    border-radius: 0;
-    padding: 0;
+    padding: 0px 0px 0px 10px;
     cursor: text;
+    border-bottom: 2px solid #666666;
   }
   
   input:focus {
     outline: 0;
-    border-bottom: 1px solid #666;
+    border-bottom: 2px solid #51A2DA;
   }
   
   label {
-    text-transform: uppercase;
     letter-spacing: 0.05em;
   }
   /**
@@ -44,13 +43,12 @@
   * Also make sure the label is only on one row, at max 2/3rds of the
   * field—to make sure it scales properly and doesn't wrap.
   */
-  input:placeholder-shown + label {
+  input:placeholder-shown + label { 
     cursor: text;
-    max-width: 66.66%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transform-origin: left bottom;
+    transform-origin: bottom;
     transform: translate(0, 2.125rem) scale(1.5);
   }
   /**
@@ -75,5 +73,5 @@
   input:not(:placeholder-shown) + label,
   input:focus + label {
     transform: translate(0, 0) scale(1);
-    cursor: pointer;
+    color: #51A2DA;
   }
