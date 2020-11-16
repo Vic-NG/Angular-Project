@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { LoginServiceService } from './../../login-service.service'
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private service: LoginServiceService
   ) {}
 
@@ -28,13 +30,15 @@ export class LoginComponent implements OnInit {
         const controle = this.login.get(campo);
         controle.markAsDirty();
       })
-    }
+      return;
+    } 
 
     this.service.loginApplication(this.login.value).subscribe(
       (dados) => {
+        this.router.navigateByUrl('/home');
         console.log(dados);
       },
-      (error: any) => console.log(error)
+      (error: any) =>  alert(error.error.error)
     );
   }
 

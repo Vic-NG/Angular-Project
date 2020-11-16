@@ -1,5 +1,5 @@
 import { ServicesService } from './../../services.service';
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css'],
-  
+  encapsulation: ViewEncapsulation.None
 })
 export class CadastroComponent implements OnInit {
   formRegister: FormGroup;
@@ -30,13 +30,16 @@ export class CadastroComponent implements OnInit {
         const controle = this.formRegister.get(campo);
         controle.markAsDirty();
       })
-    }
+      return;
+    } 
 
     this.service.registerService(this.formRegister.value).subscribe(
       (dados) => {
+        this.router.navigateByUrl('/login');
         console.log(dados);
       },
-      (error: any) => console.log(error)
+      (error: any) => 
+      alert(error.error.error)
     );
   }
 
