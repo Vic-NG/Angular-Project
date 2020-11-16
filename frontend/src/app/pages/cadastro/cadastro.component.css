@@ -1,77 +1,9 @@
+.bodyreg {
+  background-attachment: fixed;
+  background-color: rgba(243, 101, 124, 0.5);
+}
+
 .container{
     text-align: center;
 }
 
-.field {
-    display: flex;
-    flex-flow: column-reverse;
-    margin-bottom: 1em;
-  }
-  /**
-  * Add a transition to the label and input.
-  * I'm not even sure that touch-action: manipulation works on
-  * inputs, but hey, it's new and cool and could remove the 
-  * pesky delay.
-  */
-  label, input {
-    transition: all 0.2s;
-    touch-action: manipulation;
-  }
-  
-  input {
-    height: 35px;
-    width: 20%;
-    margin: 0 auto;
-    font-size: 1.0em;
-    border: 0;
-    padding: 0px 0px 0px 10px;
-    cursor: text;
-    border-bottom: 2px solid #666666;
-  }
-  
-  input:focus {
-    outline: 0;
-    border-bottom: 2px solid #51A2DA;
-  }
-  
-  label {
-    letter-spacing: 0.05em;
-  }
-  /**
-  * Translate down and scale the label up to cover the placeholder,
-  * when following an input (with placeholder-shown support).
-  * Also make sure the label is only on one row, at max 2/3rds of the
-  * field—to make sure it scales properly and doesn't wrap.
-  */
-  input:placeholder-shown + label { 
-    cursor: text;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transform-origin: bottom;
-    transform: translate(0, 2.125rem) scale(1.5);
-  }
-  /**
-  * By default, the placeholder should be transparent. Also, it should 
-  * inherit the transition.
-  */
-  ::-webkit-input-placeholder {
-    opacity: 0;
-    transition: inherit;
-  }
-  /**
-  * Show the placeholder when the input is focused.
-  */
-  input:focus::-webkit-input-placeholder {
-    opacity: 1;
-  }
-  /**
-  * When the element is focused, remove the label transform.
-  * Also, do this when the placeholder is _not_ shown, i.e. when 
-  * there's something in the input at all.
-  */
-  input:not(:placeholder-shown) + label,
-  input:focus + label {
-    transform: translate(0, 0) scale(1);
-    color: #51A2DA;
-  }

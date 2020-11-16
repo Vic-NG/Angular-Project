@@ -1,6 +1,84 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+    overflow-x: hidden;
+    font-family: 'Fira Sans', sans-serif;
+}
 
-html, body { height: 100%; background: no-repeat; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.field {
+    display: flex;
+    flex-flow: column-reverse;
+    margin-bottom: 1em;
+  }
+  /**
+  * Add a transition to the label and input.
+  * I'm not even sure that touch-action: manipulation works on
+  * inputs, but hey, it's new and cool and could remove the 
+  * pesky delay.
+  */
+  label, input {
+    transition: all 0.2s;
+    touch-action: manipulation;
+  }
+  
+  input {
+    margin: 0 auto;
+    background-color:#fbf3fd73;
+    height: 35px;
+    width: 20%;
+    border-radius: 8px;
+    opacity: 0.7;
+    font-size: 1.0em;
+    border: 0;
+    padding: 0px 0px 0px 10px;
+    cursor: text;
+  }
+  
+  input:focus {
+    outline: 0;
+    color:#666666;
+  }
+  
+  label {
+    letter-spacing: 0.05em;
+    font-size: 13px;
+  }
+  /**
+  * Translate down and scale the label up to cover the placeholder,
+  * when following an input (with placeholder-shown support).
+  * Also make sure the label is only on one row, at max 2/3rds of the
+  * field—to make sure it scales properly and doesn't wrap.
+  */
+  input:placeholder-shown + label { 
+    cursor: text;
+    margin:0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform-origin: bottom;
+    transform: translate(0, 1.9rem) scale(1.5);
+  }
+  /**
+  * By default, the placeholder should be transparent. Also, it should 
+  * inherit the transition.
+  */
+  ::-webkit-input-placeholder {
+    opacity: 0;
+    transition: inherit;
+  }
+  /**
+  * Show the placeholder when the input is focused.
+  */
+  input:focus::-webkit-input-placeholder {
+    opacity: 1;
+  }
+  /**
+  * When the element is focused, remove the label transform.
+  * Also, do this when the placeholder is _not_ shown, i.e. when 
+  * there's something in the input at all.
+  */
+  input:not(:placeholder-shown) + label,
+  input:focus + label {
+    transform: translate(0, 0) scale(1);
+    color: #51A2DA;
+  }
 
 /* background: radial-gradient(circle, #2366b1, #2f4b91, #3f2763) */

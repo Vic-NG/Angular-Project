@@ -1,8 +1,7 @@
-<body>
+<body class="bodyreg">
   <form class="formRegister" [formGroup]="formRegister" (ngSubmit)="onSubmit()">
     <div class='container'>
       <h1>CADASTRO</h1>
-
 
       <div class="field">
         <input
@@ -31,48 +30,30 @@
         formControlName="email"
         [ngClass]="aplicaCssErro('email')"
       />
-      <label for="email">Digite seu e-mail</label>
-    </div>
-
-    <app-campo-control-erro
-      [mostrarErro]="verificaValidTouched('email')"
-      msgErro="E-mail é obrigatório."
-    ></app-campo-control-erro>
-
-
-  <!-- 
-      <label> E-mail: </label>
-  
-      <div>
-        <input
-          class="input-register"
-          type="text"
-          placeholder="Digite seu E-mail."
-          formControlName="email"
-          [ngClass]="aplicaCssErro('email')"
-        />
-        <app-campo-control-erro
-          [mostrarErro]="verificaValidTouched('email')"
-          msgErro="E-mail é obrigatório."
-        ></app-campo-control-erro>
+        <label for="email">Digite seu e-mail</label>
       </div>
-  
-      <label> Password: </label> -->
-  
-     <!--  <div>
+
+      <app-campo-control-erro
+        [mostrarErro]="verificaValidTouched('email')"
+        msgErro="E-mail é obrigatório."
+      ></app-campo-control-erro>
+
+      <div class="field">
         <input
-          class="input-register"
+          name="password"
+          id="password"
           type="password"
-          placeholder="Crie uma senha."
+          placeholder="Crie sua senha."
           formControlName="password"
           [ngClass]="aplicaCssErro('password')"
         />
-  
-        <app-campo-control-erro
-          [mostrarErro]="verificaValidTouched('password')"
-          msgErro="Senha é obrigatório."
-        ></app-campo-control-erro>
-      </div> -->
+        <label for="password">Crie sua senha</label>
+      </div>
+
+      <app-campo-control-erro
+        [mostrarErro]="verificaValidTouched('password')"
+        msgErro="Senha é obrigatório."
+      ></app-campo-control-erro> 
   
       <div>
         <button type="submit" class="button">Confirm</button>
