@@ -9,6 +9,34 @@ const Users = require('../model/Users');
 
 //FUNÇÕES AUXILIARES
 
+var strengthPassword = (password) => {
+    var strength = 0;
+
+    if((password.length  >= 4) && (password.length <= 7)) {
+        strength += 10;
+    } else if ((password.lenght > 7)) {
+        strength += 25;
+    }
+
+    if((password.length >= 5) && (password.match(/[a-z]+/))) {
+        strength += 10;
+    }
+
+    if((password.length >= 6) && (password.match(/[A-Z]+/))) {
+        strength += 20;
+    }
+
+    if((password.length >= 7) && (password.match(/[#$%&*;@]/))) {
+        strength += 25;
+    }
+    
+    return true;
+}
+
+/* const strenghtShow = (strenght) => {
+    
+} */
+
 const createUserToken = (userId) => {
     return jwt.sign( {id: userId}, config.jwt_pass, {expiresIn: config.expires_in} );
 }
@@ -28,7 +56,9 @@ router.post('/create', async (req, res) => {
     if(!email || !password || !name) return res.status(400).send({ error: 'Dados insuficientes !'});
 
     try {
-        if(await Users.findOne({email})) return res.status(400).send({error: "Usuário já registrado !"});
+        if(await Users.findOne({email})) return res.status(400).send({ error: "Usuário já registrado !" });
+
+        if(await password.value != strengthPassword(password)) return res.status(406).send({ error: "A senha deve conter 8 caracteres, uma letra minuscula, uma letra maiscula e ao menos um caracter especial." });
 
         const user = await Users.create(req.body);
 

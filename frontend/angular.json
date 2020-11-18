@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.css",
               "src/assets/materialize/css/materialize.min.css"
             ],

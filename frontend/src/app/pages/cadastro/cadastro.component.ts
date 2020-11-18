@@ -3,6 +3,8 @@ import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-cadastro',
@@ -15,6 +17,7 @@ export class CadastroComponent implements OnInit {
   check: any = [];
 
   constructor(
+    private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private router: Router,
     private service: ServicesService
@@ -35,11 +38,12 @@ export class CadastroComponent implements OnInit {
 
     this.service.registerService(this.formRegister.value).subscribe(
       (dados) => {
-        this.router.navigateByUrl('/login');
+        this.toastr.success('Conta criada com sucesso!');
+        //this.router.navigateByUrl('/login');
         console.log(dados);
       },
       (error: any) => 
-      alert(error.error.error)
+      this.toastr.warning(error.error.error)
     );
   }
 

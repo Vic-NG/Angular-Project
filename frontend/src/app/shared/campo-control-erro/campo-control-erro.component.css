@@ -1,10 +1,12 @@
 .errorDiv {
     background: rgb(255, 255, 255, 0.6);
-    margin: 5px auto;
+    margin: 0 auto;
+    text-align: center;
     color: crimson;
-    width: calc(25% - 15px);
     padding: 10px;
     border-radius: 10px;
+    width: auto;
+    max-width: 30%;
 }
 
 .sr-only{

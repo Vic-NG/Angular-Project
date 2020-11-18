@@ -1,6 +1,15 @@
 <html class="loginbackground">
-  
-  <h1 style="color:beige ;">Bem vindo ! :)</h1>
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+
+  <div class="row">  
+    <div class="col s3"></div>
+      <div class="input-field col s6">
+      <h1 style="color:beige; text-align: center;">Bem vindo ! :)</h1>
+      </div>
+    <div class="col s3"></div>
+  </div>
 
   <form [formGroup]="login" (ngSubmit)="onSubmit()">  
 
@@ -46,17 +55,39 @@
       msgErro="Senha é obrigatório."
     ></app-campo-control-erro>
 
-    <div>
-      <button type="submit" class="button">Login</button>
-      <button class="button">Cancel</button>
+    <div class="row">
+      <div class="col s3"></div>
+      <div class="input-field col s6" style="text-align: center;">
+        <button 
+          class="btn waves-effect waves-light" 
+          style="background-color:mediumpurple;" 
+          type="submit" 
+          name="action"
+          >Login
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+      <div class="col s3"></div>
     </div>
 
     <br>
 
-    <div>
-      <a href="/cadastro" style="color: beige;">Não tem conta? Clique aqui para registrar.</a>
+    <div class="row">
+      <div class="col s3"></div>
+      <div class="input-field col s6" style="text-align: center;">
+        <ul class="pagination">
+          <li class="waves-effect">
+            <a href="/cadastro" style="color: beige; text-align: center;">
+            Não tem conta? Clique aqui para registrar.
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col s3"></div>
     </div>
 
+    
+    
     <app-form-debug [form]="login"></app-form-debug>
   </form>
 </html>

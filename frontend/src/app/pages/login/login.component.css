@@ -1,19 +1,10 @@
-.loginbackground {
-/*     background-image:url('../../../image/animated.gif'); */
-   /*  background-size: cover; */
-    text-align: center;
-}
-
-
-/* [open] html {
+/* .loginbackground {
     background-image:url('../../../image/animated.gif');
+    background-size: cover;
 }
-
- */
-
 
 @media screen and (max-width: 500px){
     .loginbackground{
         background-attachment: fixed;
     }
-}
+} */

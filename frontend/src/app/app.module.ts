@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
   ],
   imports: [
+    CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     BrowserModule,

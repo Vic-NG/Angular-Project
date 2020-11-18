@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { LoginServiceService } from './../../login-service.service'
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  encapsulation: ViewEncapsulation.None
  
 })
 export class LoginComponent implements OnInit {
@@ -60,6 +61,7 @@ export class LoginComponent implements OnInit {
       'has-feedback': this.verificaValidTouched(campo),
     };
   }
+  
 
   ngOnInit() {
     localStorage.clear();
