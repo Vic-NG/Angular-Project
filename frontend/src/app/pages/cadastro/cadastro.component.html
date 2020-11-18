@@ -1,13 +1,12 @@
 <body class="bodyreg">
   <form class="formRegister" [formGroup]="formRegister" (ngSubmit)="onSubmit()">
     <div class='container'>
-      <h1>CADASTRO</h1>
+      <h5>CADASTRO</h5>
 
       <div class="field">
         <input
         name="fullname"
-        id="fullname"
-        floatLabel=”never”
+        id="fullname" 
         type="text"
         placeholder="Digite seu nome"
         formControlName="name"

@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~10.0.4",
+    "@angular/animations": "^10.0.14",
     "@angular/cdk": "^10.2.7",
     "@angular/common": "~10.0.4",
     "@angular/compiler": "~10.0.4",
@@ -23,7 +23,9 @@
     "ag-grid-angular": "^23.2.1",
     "ag-grid-community": "^23.2.1",
     "dbjson": "^1.0.0",
+    "ngx-toast": "^1.1.4",
     "rxjs": "~6.5.5",
+    "rxjs-compat": "^6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },

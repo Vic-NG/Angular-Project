@@ -1,49 +1,62 @@
-<h1>Bem vindo ! :)</h1>
+<html class="loginbackground">
+  
+  <h1 style="color:beige ;">Bem vindo ! :)</h1>
 
-<form [formGroup]="login" (ngSubmit)="onSubmit()">  
+  <form [formGroup]="login" (ngSubmit)="onSubmit()">  
 
-  <div class="field">
-    <input
-    name="email"
-    id="email"
-    type="text"
-    placeholder="Digite seu E-mail."
-    formControlName="email"
-    [ngClass]="aplicaCssErro('email')"
-  />
-    <label for="email">Digite seu  e-mail</label>
-  </div>
+    <div class="row">
+      <div class="col s3"></div>
+      <div class="input-field col s6">
+        <input  
+          name="email"
+          id="email"
+          type="text"
+          formControlName="email"
+          [ngClass]="aplicaCssErro('email')"
+          class="validate"
+        >
+        <label for="email">Email</label>
+      </div>
+      <div class="col s3"></div>
+    </div>
 
-  <app-campo-control-erro
-    [mostrarErro]="verificaValidTouched('email')"
-    msgErro="E-mail é obrigatório."
-  ></app-campo-control-erro>
+    <app-campo-control-erro
+      [mostrarErro]="verificaValidTouched('email')"
+      msgErro="E-mail é obrigatório."
+    ></app-campo-control-erro>
 
-  <div class="field">
-    <input
+    <div class="row">
+      <div class="col s3"></div>
+      <div class="input-field col s6">
+        <input  
           name="password"
           id="password"
           type="password"
-          placeholder="Digite sua senha."
           formControlName="password"
           [ngClass]="aplicaCssErro('password')"
-        />
+          class="validate"
+        >
         <label for="password">Digite sua senha</label>
-  </div>
+      </div>
+      <div class="col s3"></div>
+    </div>
 
-  <app-campo-control-erro
-    [mostrarErro]="verificaValidTouched('password')"
-    msgErro="Senha é obrigatório."
-  ></app-campo-control-erro>
+    <app-campo-control-erro
+      [mostrarErro]="verificaValidTouched('password')"
+      msgErro="Senha é obrigatório."
+    ></app-campo-control-erro>
 
-  <div>
-    <button type="submit" class="button">Login</button>
-    <button class="button">Cancel</button>
-  </div>
+    <div>
+      <button type="submit" class="button">Login</button>
+      <button class="button">Cancel</button>
+    </div>
 
-  <div>
-    <a href="/cadastro">Não tem conta? Clique aqui para registrar.</a>
-  </div>
+    <br>
 
-  <app-form-debug [form]="login"></app-form-debug>
-</form>
+    <div>
+      <a href="/cadastro" style="color: beige;">Não tem conta? Clique aqui para registrar.</a>
+    </div>
+
+    <app-form-debug [form]="login"></app-form-debug>
+  </form>
+</html>

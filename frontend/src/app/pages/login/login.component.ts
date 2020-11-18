@@ -1,13 +1,15 @@
 import { Router } from '@angular/router';
 import { LoginServiceService } from './../../login-service.service'
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit} from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  encapsulation: ViewEncapsulation.None
+ 
 })
 export class LoginComponent implements OnInit {
 
@@ -15,6 +17,7 @@ export class LoginComponent implements OnInit {
   check: any = [];
 
   constructor(
+    private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private router: Router,
     private service: LoginServiceService
@@ -34,11 +37,13 @@ export class LoginComponent implements OnInit {
     } 
 
     this.service.loginApplication(this.login.value).subscribe(
-      (dados) => {
+      (dados:any) => {
+        if (!dados?.token) return;
+        localStorage.setItem('token', dados.token);
         this.router.navigateByUrl('/home');
         console.log(dados);
       },
-      (error: any) =>  alert(error.error.error)
+      (error: any) =>  this.toastr.error(error.error.error)
     );
   }
 
@@ -57,10 +62,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.clear();
     this.login = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]]
     });
   }
-
 }

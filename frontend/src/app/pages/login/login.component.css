@@ -1,4 +1,19 @@
-html{
-    background: plum;
+.loginbackground {
+/*     background-image:url('../../../image/animated.gif'); */
+   /*  background-size: cover; */
     text-align: center;
+}
+
+
+/* [open] html {
+    background-image:url('../../../image/animated.gif');
+}
+
+ */
+
+
+@media screen and (max-width: 500px){
+    .loginbackground{
+        background-attachment: fixed;
+    }
 }

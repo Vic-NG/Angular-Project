@@ -8,7 +8,6 @@ export class LoginServiceService {
 
   url = 'http://localhost:3000/users';
 
-
   constructor(private http: HttpClient) {}
 
   loginApplication(x){
