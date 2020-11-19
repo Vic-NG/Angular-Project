@@ -25,7 +25,7 @@
     "dbjson": "^1.0.0",
     "ngx-toast": "^1.1.4",
     "ngx-toastr": "^6.5.0",
-    "rxjs": "~6.5.5",
+    "rxjs": "~6.6.3",
     "rxjs-compat": "^6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
