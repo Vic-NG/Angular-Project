@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ServicesService } from './../../services.service';
+import { RegisterService } from '../../services/register.service';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,6 +17,6 @@ import { CadastroComponent } from './cadastro.component';
     SharedModule,
     HttpClientModule,
   ],
-  providers: [ServicesService],
+  providers: [RegisterService],
 })
 export class CadastroModule {}

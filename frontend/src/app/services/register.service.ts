@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 
-export class ServicesService {
+export class RegisterService {
 
   url = 'http://localhost:3000/users'
 

@@ -1,18 +1,25 @@
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
 <body class="bodyreg">
   <form class="formRegister" [formGroup]="formRegister" (ngSubmit)="onSubmit()">
     <div class='container'>
       <h5>CADASTRO</h5>
 
-      <div class="field">
-        <input
-        name="fullname"
-        id="fullname" 
-        type="text"
-        placeholder="Digite seu nome"
-        formControlName="name"
-        [ngClass]="aplicaCssErro('name')"
-      />
+      <div class="row">
+        <div class="col s3"></div>
+        <div class="input-field col s6">
+          <input  
+            name="fullname"
+            id="fullname" 
+            type="text"
+            formControlName="name"
+            [ngClass]="aplicaCssErro('name')"
+          />
         <label for="fullname">Digite seu nome</label>
+        </div>
+        <div class="col s3"></div>
       </div>
 
       <app-campo-control-erro
@@ -20,16 +27,20 @@
         msgErro="Nome é obrigatório."
       ></app-campo-control-erro>  
 
-      <div class="field">
-        <input
-        name="email"
-        id="email"
-        type="text"
-        placeholder="Digite seu E-mail."
-        formControlName="email"
-        [ngClass]="aplicaCssErro('email')"
-      />
-        <label for="email">Digite seu e-mail</label>
+      <div class="row">
+        <div class="col s3"></div>
+        <div class="input-field col s6">
+          <input  
+            name="email"
+            id="email"
+            type="text"
+            formControlName="email"
+            [ngClass]="aplicaCssErro('email')"
+            class="validate"
+          >
+          <label for="email">Email</label>
+        </div>
+        <div class="col s3"></div>
       </div>
 
       <app-campo-control-erro
@@ -37,26 +48,63 @@
         msgErro="E-mail é obrigatório."
       ></app-campo-control-erro>
 
-      <div class="field">
-        <input
-          name="password"
-          id="password"
-          type="password"
-          placeholder="Crie sua senha."
-          formControlName="password"
-          [ngClass]="aplicaCssErro('password')"
-        />
-        <label for="password">Crie sua senha</label>
+      <div class="row">
+        <div class="col s3"></div>
+        <div class="input-field col s6">
+          <input  
+            name="password"
+            id="password"
+            type="password"
+            formControlName="password"
+            [ngClass]="aplicaCssErro('password')"
+            class="validate"
+          >
+          <label for="password">Digite sua senha</label>
+        </div>
+        <div class="col s3"></div>
       </div>
 
       <app-campo-control-erro
         [mostrarErro]="verificaValidTouched('password')"
         msgErro="Senha é obrigatório."
       ></app-campo-control-erro> 
-  
-      <div>
-        <button type="submit" class="button">Confirm</button>
-        <button class="button" (click)="registerCancel()">Cancel</button>
+
+
+      <div class="row">
+        <div class="col s3"></div>
+        <div class="input-field col s6" style="text-align: center;">
+          <button 
+            class="btn waves-effect waves-light" 
+            style="background-color:mediumpurple;" 
+            type="submit" 
+            name="action"
+            >Confirmar
+            <i class="material-icons right">done</i>
+          </button>
+          &nbsp;
+          <button 
+            class="btn waves-effect waves-light" 
+            style="background-color:mediumpurple;" 
+            type="button" 
+            name="action"
+            (click)="registerCancel()"
+            >Voltar
+            <i class="material-icons right">reply</i>
+          </button>
+        </div>
+        <div class="col s3"></div>
+      </div>
+
+      <div class="preloader-wrapper active">
+        <div class="spinner-layer spinner-red-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
       </div>
   
       <app-form-debug [form]="formRegister"></app-form-debug>

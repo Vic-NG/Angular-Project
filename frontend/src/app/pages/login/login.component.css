@@ -1,4 +1,4 @@
-/* .loginbackground {
+.loginbackground {
     background-image:url('../../../image/animated.gif');
     background-size: cover;
 }
@@ -7,4 +7,4 @@
     .loginbackground{
         background-attachment: fixed;
     }
-} */
+}

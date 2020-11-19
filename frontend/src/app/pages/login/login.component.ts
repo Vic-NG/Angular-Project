@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { LoginServiceService } from './../../login-service.service'
+import { LoginService } from '../../services/login-service.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -16,12 +16,13 @@ export class LoginComponent implements OnInit {
 
   login: FormGroup;
   check: any = [];
+  teste: string = 'teste';
 
   constructor(
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private service: LoginServiceService
+    private service: LoginService
   ) {}
 
   onSubmit() {

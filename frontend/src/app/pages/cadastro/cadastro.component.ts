@@ -1,6 +1,6 @@
-import { ServicesService } from './../../services.service';
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { RegisterService } from '../../services/register.service';
 import { Router } from '@angular/router';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
@@ -13,6 +13,8 @@ import { ToastrService } from 'ngx-toastr';
   encapsulation: ViewEncapsulation.None
 })
 export class CadastroComponent implements OnInit {
+
+  public showOverlay = true;
   formRegister: FormGroup;
   check: any = [];
 
@@ -20,8 +22,8 @@ export class CadastroComponent implements OnInit {
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private service: ServicesService
-  ) {}
+    private service: RegisterService
+  ){}
 
   onSubmit() {
     console.log(this.formRegister);
@@ -39,11 +41,15 @@ export class CadastroComponent implements OnInit {
     this.service.registerService(this.formRegister.value).subscribe(
       (dados) => {
         this.toastr.success('Conta criada com sucesso!');
-        //this.router.navigateByUrl('/login');
+        setTimeout(() => {
+          this.router.navigateByUrl('/login');
+        }, 3000)
+
         console.log(dados);
       },
       (error: any) => 
       this.toastr.warning(error.error.error)
+      
     );
   }
 

@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { LoginServiceService } from './../../login-service.service'
+import { LoginService } from '../../services/login-service.service';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,7 +17,7 @@ import { LoginComponent } from './login.component';
     ReactiveFormsModule,
     SharedModule
   ],
-  providers:[LoginServiceService]
+  providers:[LoginService]
 })
 
 export class LoginModule {}
