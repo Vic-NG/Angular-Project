@@ -5,37 +5,20 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 
 const Users = require('../model/Users');
+var passwordValidator = require('password-validator');
+var schema = new passwordValidator();
 
 
 //FUNÇÕES AUXILIARES
-
-var strengthPassword = (password) => {
-    var strength = 0;
-
-    if((password.length  >= 4) && (password.length <= 7)) {
-        strength += 10;
-    } else if ((password.lenght > 7)) {
-        strength += 25;
-    }
-
-    if((password.length >= 5) && (password.match(/[a-z]+/))) {
-        strength += 10;
-    }
-
-    if((password.length >= 6) && (password.match(/[A-Z]+/))) {
-        strength += 20;
-    }
-
-    if((password.length >= 7) && (password.match(/[#$%&*;@]/))) {
-        strength += 25;
-    }
-    
-    return true;
-}
-
-/* const strenghtShow = (strenght) => {
-    
-} */
+    schema
+    .is().min(8)                                    // Minimum length 8
+    .is().max(10)                                   // Maximum length 100
+    .has().uppercase(1)                             // Must have uppercase letters
+    .has().lowercase(1)                             // Must have lowercase letters
+    .has().digits(2)                                // Must have at least 2 digits
+    .has().symbols(1)                               // Must have 1 symbol    
+    .has().not().spaces()                           // Should not have spaces
+    .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
 
 const createUserToken = (userId) => {
     return jwt.sign( {id: userId}, config.jwt_pass, {expiresIn: config.expires_in} );
@@ -57,9 +40,9 @@ router.post('/create', async (req, res) => {
 
     try {
         if(await Users.findOne({email})) return res.status(400).send({ error: "Usuário já registrado !" });
-
-        if(await password.value != strengthPassword(password)) return res.status(406).send({ error: "A senha deve conter 8 caracteres, uma letra minuscula, uma letra maiscula e ao menos um caracter especial." });
-
+    
+        if(schema.validate(password) === false) return res.status(406).send({ error: "A senha deverá ter somente 8 caracteres, contendo números, letras maiúsculas e letras minúsculas" });
+        
         const user = await Users.create(req.body);
 
         user.password = undefined;
