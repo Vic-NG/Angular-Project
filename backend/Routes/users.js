@@ -12,10 +12,10 @@ var schema = new passwordValidator();
 //FUNÇÕES AUXILIARES
     schema
     .is().min(8)                                    // Minimum length 8
-    .is().max(10)                                   // Maximum length 100
+    .is().max(14)                                   // Maximum length 100
     .has().uppercase(1)                             // Must have uppercase letters
     .has().lowercase(1)                             // Must have lowercase letters
-    .has().digits(2)                                // Must have at least 2 digits
+    .has().digits(2)                                
     .has().symbols(1)                               // Must have 1 symbol    
     .has().not().spaces()                           // Should not have spaces
     .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
@@ -40,8 +40,9 @@ router.post('/create', async (req, res) => {
 
     try {
         if(await Users.findOne({email})) return res.status(400).send({ error: "Usuário já registrado !" });
-    
-        if(schema.validate(password) === false) return res.status(406).send({ error: "A senha deverá ter somente 8 caracteres, contendo números, letras maiúsculas e letras minúsculas" });
+
+        console.log(schema.validate(password));
+        if(await schema.validate(password) === false) return res.status(406).send({ error: "A senha deverá ter somente 8 caracteres, contendo números, letras maiúsculas e letras minúsculas" });
         
         const user = await Users.create(req.body);
 
