@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const config = require('./config/config');
 const cors = require('cors');
 const url = config.bd_string;
-const options = {poolSize: 5, useNewUrlParser: true, useUnifiedTopology: true};
+const options = { poolSize: 5, useNewUrlParser: true, useUnifiedTopology: true };
 
 mongoose.connect(url, options);
 mongoose.set("useCreateIndex", true);
@@ -23,16 +23,18 @@ mongoose.connection.on('connected', () => {
 });
 
 //BODY PARSER
-app.use(bodyParser.urlencoded( {extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
 
 const indexRoute = require('./Routes/index');
 const userRoute = require('./Routes/users');
+const reminderRoute = require('./Routes/reminders');
 
 app.use('/', indexRoute);
-app.use('/users', userRoute)
+app.use('/users', userRoute);
+app.use('/reminders', reminderRoute);
 
 app.listen(3000);
 
