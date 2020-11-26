@@ -9,6 +9,7 @@ const options = { poolSize: 5, useNewUrlParser: true, useUnifiedTopology: true }
 
 mongoose.connect(url, options);
 mongoose.set("useCreateIndex", true);
+mongoose.set('useFindAndModify', false);
 
 mongoose.connection.on('error', (err) => {
     console.log('Erro na conexão com o banco de dados!', + err);
