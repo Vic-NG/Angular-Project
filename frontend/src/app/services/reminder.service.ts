@@ -12,7 +12,7 @@ export class ReminderService {
   constructor(private http: HttpClient) {}
 
   getReminders() {
-    return this.http.get(`${this.url}/reminders`);
+    return this.http.get(`${this.url}`);
   }
 
   newReminder(x) {
@@ -23,7 +23,7 @@ export class ReminderService {
     return this.http.put(`${this.url}/update`, x, {headers: {'Content-type': 'application/json'}});
   }
 
-  deleteReminder(x) {
-    return this.http.delete(`${this.url}/delete`, x);
+  deleteReminder() {
+    return this.http.delete(`${this.url}/delete`);
   }
 }

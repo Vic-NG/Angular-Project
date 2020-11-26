@@ -4,7 +4,7 @@ const router = express.Router();
 const auth = require('../middlewares/auth');
 const Reminders = require('../model/Reminders');
 
-router.get('/', auth,  async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const reminders = await Reminders.find({});
         return res.send(reminders);
