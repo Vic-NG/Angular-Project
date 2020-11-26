@@ -41,7 +41,7 @@ router.post('/create', async (req, res) => {
     try {
         if(await Users.findOne({email})) return res.status(400).send({ message: "Usuário já registrado !" });
 
-        if(schema.validate(password) === false) return res.status(406).send({ message: "A senha deve ter de 8 a 14 caracteres, contendo números, letras maiúsculas, letras minúsculas e ao menos um caracter especial." });
+        if(schema.validate(password) === false) return res.status(406).send({ message: "A senha deve conter de 8 a 14 caracteres, contendo números, letras maiúsculas, letras minúsculas e ao menos um caracter especial." });
         
         const user = await Users.create(req.body);
 

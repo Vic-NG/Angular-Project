@@ -34,7 +34,7 @@ router.put('/update/:id', auth,  async (req, res) => {
 
     var id = req.params.id;
 
-     await Reminders.findOne({_id: id}, (err, foundObject) => {
+    await Reminders.findOne({_id: id}, (err, foundObject) => {
         if (err) return res.status(500).send({ message: "Erro ao encontrar dados."});
 
         if (!foundObject) return res.status(404).send({ message: 'Objeto não encontrado.'});

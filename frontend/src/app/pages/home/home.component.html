@@ -1,1 +1,48 @@
-<p>home works!</p>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<form>
+    <div class="row">
+        <div class="col s3"></div>
+            <div class="col s6">
+                <h2 class="header">Crie seu lembrete</h2>
+                <div class="card horizontal">
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <div class="input-field col s9">
+                                <input 
+                                    name= "locais" 
+                                    id= "locais" 
+                                    type="text"                              
+                                    class="validate"
+                                />
+                                <label for="locais">Local</label>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="input-field col s9">
+                                <input 
+                                    name= "atividades" 
+                                    id= "atividades"  
+                                    type="text" 
+                                    class="validate"
+                                />
+                                <label for="atividades">Atividades</label>
+                            </div>    
+                            <button type="button" (click)="handleClick($event)" value="atividades" class="btn-floating btn-big waves-effect waves-light green"><i class="material-icons">add</i></button>
+                        </div>
+                        <p value="atividades" ></p>
+                        <div class="card-action">   
+                            <a href="#">This is a link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="col s3"></div>
+    </div>
+
+
+    <div></div>
+
+</form>

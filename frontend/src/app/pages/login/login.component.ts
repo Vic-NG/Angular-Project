@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/home');
         console.log(dados);
       },
-      (error: any) =>  this.toastr.error(error.error.error)
+      (error: any) =>  this.toastr.error(error.error.message)
     );
   }
 

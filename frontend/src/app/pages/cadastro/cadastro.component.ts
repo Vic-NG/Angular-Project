@@ -13,8 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   encapsulation: ViewEncapsulation.None
 })
 export class CadastroComponent implements OnInit {
-
-  public showOverlay = true;
+  
   formRegister: FormGroup;
   check: any = [];
 
@@ -48,7 +47,7 @@ export class CadastroComponent implements OnInit {
         console.log(dados);
       },
       (error: any) => 
-      this.toastr.warning(error.error.error)
+      this.toastr.warning(error.error.message)
       
     );
   }

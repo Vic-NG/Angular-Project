@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReminderComponent } from './reminder/reminder/reminder.component';
+
+import { ReminderService } from '../../services/reminder.service';
+import { HomeComponent } from './home.component';
 
 
 
 @NgModule({
-  declarations: [ReminderComponent],
+  declarations: [HomeComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  providers: [ReminderService]
 })
 export class HomeModule { }

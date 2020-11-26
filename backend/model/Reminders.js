@@ -1,20 +1,25 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const reqString ={
+const reqString = {
   type: String, 
   required: true
+};
+
+const dateType = {
+  type: Date, 
+  default: Date.now
 };
 
 const ReminderSchema = new Schema({
   reminder: [
     {
       locations: reqString,
-      day: { type: Date, required: true, default: Date.now },
+      day: dateType,
       atv_name: [reqString],
       periods: [{
-          start: reqString,
-          end: reqString,
+          start: dateType,
+          end: dateType,
         }]
     },
   ],

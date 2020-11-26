@@ -1,7 +1,7 @@
-import { ReminderComponent } from './pages/home/reminder/reminder/reminder.component';
 import { SharedModule } from './shared/shared.module';
 import { CadastroModule } from './pages/cadastro/cadastro.module';
 import { LoginModule } from './pages/login/login.module';
+import { HomeModule } from './pages/home/home.module';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -14,16 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
-import { HomeComponent } from './pages/home/home.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorPageComponent,
-    HomeComponent,
-    ReminderComponent
+    ErrorPageComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +30,7 @@ import { HomeComponent } from './pages/home/home.component';
     AppRoutingModule,
     CadastroModule,
     LoginModule,
+    HomeModule,
     SharedModule,
     HttpClientModule,
     FormsModule,
