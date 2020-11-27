@@ -15,9 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
 
   login: FormGroup;
-  check: any = [];
-  teste: string = 'teste';
-
+  
   constructor(
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
