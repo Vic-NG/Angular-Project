@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HomeComponent implements OnInit {
 
-  public reminderList: any[];  
+  public reminderList: any[] = [];  
 
   constructor(
     private toastr: ToastrService,
@@ -19,6 +19,10 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getListReminder();
+  }
+
+  getListReminder(){
     this.service.getReminders().subscribe((x:any) => {
       this.reminderList = x;
       console.log(this.reminderList);
@@ -27,7 +31,6 @@ export class HomeComponent implements OnInit {
       this.toastr.warning(err.error.message)
     });  
   }
-
 
   handleClick(event: Event) { 
     console.log('Click!', event) 

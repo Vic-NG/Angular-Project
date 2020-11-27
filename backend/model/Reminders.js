@@ -12,18 +12,12 @@ const dateType = {
 };
 
 const ReminderSchema = new Schema({
-  reminder: [
-    {
-      locations: reqString,
-      day: dateType,
-      atv_name: [reqString],
-      periods: [{
-          start: dateType,
-          end: dateType,
-        }]
-    },
-  ],
-  created: { type: Date, default: Date.now },
+    locations: reqString,
+    day: dateType,
+    atv_name: [reqString],
+    start: dateType,
+    end: dateType,
+    created: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("Reminder", ReminderSchema);

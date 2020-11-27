@@ -15,9 +15,9 @@ router.get('/', async (req, res) => {
 
 router.post('/new', auth, async (req, res) => {
     
-    const { reminder } = req.body;
+    const { locations, atv_name  } = req.body;
 
-    if( !reminder ) { return res.status(400).send({ message: 'Dados insuficientes !' }); }
+    if( !locations || !atv_name ) { return res.status(400).send({ message: 'Dados insuficientes !' }); }
 
     try {
         const reminders = await Reminders.create(req.body);

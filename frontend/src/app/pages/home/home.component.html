@@ -41,9 +41,47 @@
         <div class="col s3"></div>
     </div>
 
-    <div style="text-align:center" *ngFor="let item of reminderList">
-        <p>{{ item?.reminder }}</p>
-        <p> estou aqui</p>
+    <div class="row" *ngFor="let item of reminderList">
+        <div class="col s3"></div>
+            <div class="col s6">
+                <h5 class="header">Lembretes</h5>
+                <div class="card horizontal">
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <span>{{ item.locations }}</span>
+                            <span>{{ item.day }}</span>
+                            <span>{{ item.start }}</span>
+                            <span>{{ item.end }}</span>
+                            <span>{{ item.atv_name }}</span>
+                        </div>
+                        <div class="card-action">   
+                            <a href="#">This is a link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="col s3"></div>
     </div>
 
+   <!--  <div class="row" *ngFor="let item of reminderList">
+        <div class="col s3"></div>
+            <div class="col s6">
+                <h5 class="header">Lembretes</h5>
+                <div class="card horizontal">
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <span>{{ item.locations }}</span>
+                            <span>{{ item.day }}</span>
+                            <span>{{ item.start }}</span>
+                            <span>{{ item.end }}</span>
+                            <span>{{ item.atv_name }}</span>
+                        </div>
+                        <div class="card-action">   
+                            <a href="#">This is a link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="col s3"></div>
+    </div> -->
 </form>

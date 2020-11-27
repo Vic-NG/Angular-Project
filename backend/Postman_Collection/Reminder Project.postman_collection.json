@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "1b481850-a016-4c23-bd16-5342e2f35653",
+		"name": "Reminder Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Reminders - list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYmViMWZkZGI4NzUwMDRjMDAyM2MyNiIsImlhdCI6MTYwNjM2NTU3NSwiZXhwIjoxNjA2OTcwMzc1fQ.vO5OBdPfBB7nOUNLyPOZfybRm_IJ59j6_vrp8nDHj9k",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/reminders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reminders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login - auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Nimer\",\r\n    \"email\": \"nimer@gmail.com\",\r\n    \"password\": \"61011770Vi#\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reminders - create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYmViMWZkZGI4NzUwMDRjMDAyM2MyNiIsImlhdCI6MTYwNjM0MTMxNCwiZXhwIjoxNjA2OTQ2MTE0fQ.5q__s1-pSJwSf3b8HAMxaJBnqiJvHDehO1fq7CoyzDY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"locations\": \"\",\r\n    \"atv_name\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/reminders/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reminders",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reminders - update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYmViMWZkZGI4NzUwMDRjMDAyM2MyNiIsImlhdCI6MTYwNjM2NTU3NSwiZXhwIjoxNjA2OTcwMzc1fQ.vO5OBdPfBB7nOUNLyPOZfybRm_IJ59j6_vrp8nDHj9k",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"locations\": \"\",\r\n    \"atv_name\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/reminders/update/id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reminders",
+						"update",
+						"id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reminders - delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYmViMWZkZGI4NzUwMDRjMDAyM2MyNiIsImlhdCI6MTYwNjM0MTMxNCwiZXhwIjoxNjA2OTQ2MTE0fQ.5q__s1-pSJwSf3b8HAMxaJBnqiJvHDehO1fq7CoyzDY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/reminders/delete/id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reminders",
+						"delete",
+						"id"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
