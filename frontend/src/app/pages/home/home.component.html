@@ -1,87 +1,73 @@
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+<div class="container">
+    <form>
+     
+        <div class="card blue-white darken-1">
+            <div class="card-content gray-text">
+                <span class="card-title">Card Title</span>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input 
+                        name= "locais" 
+                        id= "locais" 
+                        type="text"                              
+                        class="validate"
+                        />
+                        <label for="locais">Local</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input 
+                        name= "data" 
+                        id= "data" 
+                        type="date"                              
+                        class="validate"
+                        />
+                        <label for="data">Data</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s9">
+                        <input 
+                        name= "atividades"  
+                        id= "atividades" 
+                        type="text"                              
+                        class="validate"
+                        />
+                        <label for="atividades">Atividades</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>     
+                    </div>
+                    <input type="text" class="timepicker">
+                </div>  
+            </div>
+            <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href="#">This is a link</a>
+            </div>
+        </div>
 
-<form>
-    <div class="row">
-        <div class="col s3"></div>
-            <div class="col s6">
-                <h2 class="header">Crie seu lembrete</h2>
-                <div class="card horizontal">
-                    <div class="card-stacked">
-                        <div class="card-content">
-                                <input 
-                                    name= "locais" 
-                                    id= "locais" 
-                                    type="text"                              
-                                    class="validate"
-                                />
-                                <label for="locais">Local</label>
-                        </div>
-                        <div class="card-content">
-                            <label for="atividades">Atividades</label>
-                            <div class="inputcontainer">
-                                <input 
-                                    name= "atividades" 
-                                    id= "atividades"  
-                                    type="text" 
-                                    class="validate"
-                                />
-                                <br>
-                                <button type="button" (click)="handleClick($event)" value="atividades" class="btn-floating btn-big waves-effect waves-light green"><i class="material-icons">add</i></button>
-                            </div>    
-                        </div>
-                        <p value="atividades" ></p>
-                        <div class="card-action">   
-                            <a href="#">This is a link</a>
-                        </div>
+
+        <div class="card blue-grey darken-1" *ngFor="let item of reminderList">
+            <div class="card-content white-text">
+                <span class="card-title red-text">{{ item.locations }}</span>
+                <div class="row">
+                    <div class="input-field col s6">
+                        Data:&nbsp;{{ item.day }}<br>
+                        Entrada:&nbsp;{{ item.start }}<br>
+                        Saida:&nbsp;{{ item.end }}
+                    </div>
+                    <div class="input-field col s6">
+                        Atividades:<br>{{ item.atv_name.join(" ")}}
                     </div>
                 </div>
             </div>
-        <div class="col s3"></div>
-    </div>
-
-    <div class="row" *ngFor="let item of reminderList">
-        <div class="col s3"></div>
-            <div class="col s6">
-                <h5 class="header">Lembretes</h5>
-                <div class="card horizontal">
-                    <div class="card-stacked">
-                        <div class="card-content">
-                            <span>{{ item.locations }}</span>
-                            <span>{{ item.day }}</span>
-                            <span>{{ item.start }}</span>
-                            <span>{{ item.end }}</span>
-                            <span>{{ item.atv_name }}</span>
-                        </div>
-                        <div class="card-action">   
-                            <a href="#">This is a link</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href="#">This is a link</a>
             </div>
-        <div class="col s3"></div>
-    </div>
-
-   <!--  <div class="row" *ngFor="let item of reminderList">
-        <div class="col s3"></div>
-            <div class="col s6">
-                <h5 class="header">Lembretes</h5>
-                <div class="card horizontal">
-                    <div class="card-stacked">
-                        <div class="card-content">
-                            <span>{{ item.locations }}</span>
-                            <span>{{ item.day }}</span>
-                            <span>{{ item.start }}</span>
-                            <span>{{ item.end }}</span>
-                            <span>{{ item.atv_name }}</span>
-                        </div>
-                        <div class="card-action">   
-                            <a href="#">This is a link</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <div class="col s3"></div>
-    </div> -->
-</form>
+        </div>
+    </form>
+</div>
