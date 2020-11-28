@@ -27,6 +27,6 @@ export class ReminderService {
   }
 
   deleteReminder() {
-    return this.http.delete(`${this.url}/delete`);
+    return this.http.delete(`${this.url}/delete/:id`);
   }
 }

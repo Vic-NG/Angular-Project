@@ -4,7 +4,7 @@ const router = express.Router();
 const auth = require('../middlewares/auth');
 const Reminders = require('../model/Reminders');
 
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const reminders = await Reminders.find({});
         return res.send(reminders);
@@ -13,7 +13,7 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
-router.post('/new', auth, async (req, res) => {
+router.post('/new', async (req, res) => {
     
     const { locations, atv_name  } = req.body;
 
@@ -49,10 +49,10 @@ router.put('/update/:id', auth,  async (req, res) => {
 
 });
 
-router.delete('/delete/:id', auth, (req, res) => {
+router.delete('/delete/:id', (req, res) => {
     var id = req.params.id;
 
-    Reminders.findOneAndRemove({_id: id}, (err, foundObject) => {
+    Reminders.findOneAndRemove({_id: id}, (err) => {
         if (err) return res.status(500).send({ message: "Erro ao encontrar dados." });
 
         return res.status(200).send({ message: "Lembrete deletado!" });

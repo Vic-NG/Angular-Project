@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
-import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -41,9 +40,8 @@ export class HomeComponent implements OnInit {
 
     this.service.newReminder(this.reminder.value).subscribe(
       (dados:any) => {
-       /*  if (!dados?.token) return;
-        localStorage.setItem('token', dados.token); */
         console.log(dados);
+        this.router.navigateByUrl('/home');
       },
       (err: any) =>  this.toastr.error(err.error.message)
     );
@@ -65,8 +63,8 @@ export class HomeComponent implements OnInit {
 
   getListReminder(){
     this.service.getReminders().subscribe((dados: any) => { 
-      if(!dados.token) return console.log(dados);
-      localStorage.getItem("token");
+     /*  if(!dados?.token) return console.log(dados);
+      localStorage.getItem("token"); */
       this.reminderList = dados;
       console.log(this.reminderList);
     }, 
@@ -75,16 +73,25 @@ export class HomeComponent implements OnInit {
     });  
   }
 
-  handleClick(event: Event) { 
-    console.log('Click!', event) 
+  delReminder(event: Event) { 
+    this.service.deleteReminder().subscribe((del: any) => {
+      this.reminderList = del;
+      console.log(del, event);
+     // this.toastr.info(del.message);
+    }),
+    (err: any) => {
+       this.toastr.warning(err.error.message)
+    }
   } 
 
 
-  logoutApplication(event: Event): void {
+  logoutApplication(event: Event) {
     event.preventDefault(); // Prevents browser following the link
     localStorage.clear();
-    this.router.navigateByUrl('login');
-    // and then redirect with Router object, for example
+    this.toastr.info('Saindo da aplicação');
+    setTimeout(() => {
+      this.router.navigateByUrl('login');
+    }, 3000)
   } 
 
   ngOnInit(): void {
