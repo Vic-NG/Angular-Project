@@ -7,7 +7,8 @@ const reqString = {
 };
 
 const dateType = {
-  type: Date
+  type: Date,
+  default: Date.now
 };
 
 const ReminderSchema = new Schema({

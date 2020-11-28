@@ -4,12 +4,12 @@ const router = express.Router();
 const auth = require('../middlewares/auth');
 const Reminders = require('../model/Reminders');
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     try {
         const reminders = await Reminders.find({});
         return res.send(reminders);
     } catch (err) {
-        return res.status(500).send({ error: 'Erro na consulta de lembretes.'});
+        return res.status(500).send({ message: 'Erro na consulta de lembretes.'});
     }
 });
 

@@ -103,7 +103,7 @@
 
         <div class="card blue-grey darken-1" *ngFor="let item of reminderList">
             <div class="card-content white-text">
-                <span class="card-title purple-text">{{ item.locations }}</span>
+                <span class="card-title red-text">{{ item.locations }}</span>
                 <div class="row">
                     <div class="input-field col s6">
                         Data:&nbsp;{{ item.day }}<br>
@@ -111,7 +111,7 @@
                         Saida:&nbsp;{{ item.end }}
                     </div>
                     <div class="input-field col s6">
-                        Atividades:<br>{{ item.end.join(" ")}}
+                        Atividades:<br>{{ item.atv_name.join(', ')}}
                     </div>
                 </div>
             </div>
@@ -121,4 +121,8 @@
             </div>
         </div>
     </form>
+
+    <a class="waves-effect waves-light btn-small" (click)="logoutApplication($event)">
+        <i class="material-icons left">exit_to_app</i>Logout
+    </a>
 </div>
