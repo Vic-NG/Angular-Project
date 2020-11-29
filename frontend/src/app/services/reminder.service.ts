@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -26,7 +27,7 @@ export class ReminderService {
     return this.http.put(`${this.url}/update`, x, {headers: {'Content-type': 'application/json'}});
   }
 
-  deleteReminder() {
-    return this.http.delete(`${this.url}/delete/:id`);
+  deleteReminder(_id: string): Observable<void>{
+    return this.http.delete<void>(`${this.url}/delete/${_id}`);
   }
 }

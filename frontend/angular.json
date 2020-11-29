@@ -13,6 +13,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "core-js",
+              "lodash"
+           ],
             "outputPath": "dist/ubuntu-project",
             "index": "src/index.html",
             "main": "src/main.ts",

@@ -3,6 +3,8 @@ import { ReminderService } from '../../services/reminder.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
+
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -41,7 +43,11 @@ export class HomeComponent implements OnInit {
     this.service.newReminder(this.reminder.value).subscribe(
       (dados:any) => {
         console.log(dados);
-        this.router.navigateByUrl('/home');
+        this.toastr.success(dados.message);
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000)
+        //this.router.navigateByUrl('/home');
       },
       (err: any) =>  this.toastr.error(err.error.message)
     );
@@ -74,11 +80,10 @@ export class HomeComponent implements OnInit {
   }
 
   delReminder(event: Event) { 
-    this.service.deleteReminder().subscribe((del: any) => {
-      this.reminderList = del;
-      console.log(del, event);
+  this.service.deleteReminder(this.reminder.value).subscribe(() => {
+      console.log(`Lembrete deletado com id = ${this.reminder.value}`)
+  }),
      // this.toastr.info(del.message);
-    }),
     (err: any) => {
        this.toastr.warning(err.error.message)
     }
