@@ -25,11 +25,12 @@
                     ></app-campo-control-erro>
                     <div class="input-field col s6">
                         <input 
-                        name= "day" 
-                        id= "day" 
-                        type="date"                              
-                        class="validate"
+                        name="day"    
+                        id="day"  
+                        type="text" 
+                        class="validate"  
                         formControlName="day"
+                        (focus)="datapickerInitialize('day')"           
                         [ngClass]="aplicaCssErro('day')"
                         />
                         <label for="day">Data</label>
@@ -40,6 +41,39 @@
                     ></app-campo-control-erro>
                 </div>
                 <div class="row">
+                    <div class="input-field col s6">
+                        <input 
+                            name= "start" 
+                            id= "start" 
+                            type="text"                           
+                            class="validate"
+                            formControlName="start"
+                            (focus)="timepickerInitialize('start')" 
+                            [ngClass]="aplicaCssErro('start')"
+                            />
+                        <label for="start">Entrada</label>
+                    </div>
+                    <app-campo-control-erro
+                        [mostrarErro]="verificaValidTouched('start')"
+                        msgErro="Escolha hora de entrada."
+                    ></app-campo-control-erro>
+                    <div class="input-field col s6">
+                        <input 
+                            name= "end" 
+                            id= "end" 
+                            type="text"                              
+                            class="validate"
+                            formControlName="end"
+                            (focus)="timepickerInitialize('end')" 
+                            [ngClass]="aplicaCssErro('end')"
+                        />
+                        <label for="end">Saida</label>
+                    </div>
+                    <app-campo-control-erro
+                    [mostrarErro]="verificaValidTouched('end')"
+                    msgErro="Escolha hora de saida."
+                    ></app-campo-control-erro>
+                    
                     <div class="input-field col s9">
                         <input 
                         name= "atv_name"  
@@ -58,32 +92,6 @@
                    <!--  <div class="input-field col s3">
                         <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>     
                     </div> -->
-                    <input 
-                        name= "start" 
-                        id= "start" 
-                        type="date"                              
-                        class="validate"
-                        formControlName="start"
-                        [ngClass]="aplicaCssErro('start')"
-                        />
-                        <label for="start">Entrada</label>
-                    <app-campo-control-erro
-                        [mostrarErro]="verificaValidTouched('start')"
-                        msgErro="Escolha hora de entrada."
-                    ></app-campo-control-erro>
-                    <input 
-                        name= "end" 
-                        id= "end" 
-                        type="date"                              
-                        class="validate"
-                        formControlName="end"
-                        [ngClass]="aplicaCssErro('end')"
-                    />
-                    <label for="end">Saida</label>
-                    <app-campo-control-erro
-                    [mostrarErro]="verificaValidTouched('end')"
-                    msgErro="Escolha hora de saida."
-                    ></app-campo-control-erro>
                     <!-- <input type="text" id="start" class="timepicker"> -->
                    <!--  <label for="start" class="active">Start</label> -->
                 </div>  
@@ -106,7 +114,7 @@
                 <span class="card-title red-text">{{ item.locations }}</span>
                 <div class="row">
                     <div class="input-field col s6">
-                        Data:&nbsp;{{ item.day }}<br>
+                        Data:&nbsp;{{ item.day.format }}<br>
                         Entrada:&nbsp;{{ item.start }}<br>
                         Saida:&nbsp;{{ item.end }}
                     </div>

@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef} from '@angular/core';
 import { ReminderService } from '../../services/reminder.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-
-
 import { ToastrService } from 'ngx-toastr';
+
+declare const M : any;
 
 @Component({
   selector: 'app-home',
@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
 
+  // Função de submit do form com validações
   onSubmit() {
     console.log(this.reminder);
 
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
       return;
     }
 
+    // Chama a rota de criação de um lembrete
     this.service.newReminder(this.reminder.value).subscribe(
       (dados:any) => {
         console.log(dados);
@@ -67,6 +69,8 @@ export class HomeComponent implements OnInit {
     );
   }
 
+
+  // Chama a rota de lista de lembretes criados pelo usuário
   getListReminder(){
     this.service.getReminders().subscribe((dados: any) => { 
      /*  if(!dados?.token) return console.log(dados);
@@ -78,17 +82,42 @@ export class HomeComponent implements OnInit {
       this.toastr.warning(err.error.message)
     });  
   }
-
+  
+  
+  // Chama a rota de remover um lembrete
   delReminder(event: Event) { 
-  this.service.deleteReminder(this.reminder.value).subscribe(() => {
+    this.service.deleteReminder(this.reminder.value).subscribe(() => {
       console.log(`Lembrete deletado com id = ${this.reminder.value}`)
-  }),
-     // this.toastr.info(del.message);
+    }),
+    // this.toastr.info(del.message);
     (err: any) => {
-       this.toastr.warning(err.error.message)
+      this.toastr.warning(err.error.message)
     }
   } 
+  
+  // Funçoes auxiliares
+  datapickerInitialize(id: string){
+    let elems = document.getElementById(id);
+    M.Datepicker.init(elems, {
+      format: "dd/mm/yyyy",
+      autoclose: false,
+      onSelect: (dateText: any) => {
+        this.reminder.controls[id].setValue(dateText);
+      },
+    });
+  }
 
+  timepickerInitialize(id: string){
+    let elems = document.getElementById(id);
+    M.Timepicker.init(elems, {
+      defaultTime: 'now',
+      autoclose: false,
+      twelveHour: true,
+      onSelect: (dateText: any) => {
+        this.reminder.controls[id].setValue(dateText);
+      },
+    });
+  }
 
   logoutApplication(event: Event) {
     event.preventDefault(); // Prevents browser following the link
@@ -109,5 +138,7 @@ export class HomeComponent implements OnInit {
       start: [null, [Validators.required]],
       end: [null, [Validators.required]]
     });
+
+    console.log(this.reminder.controls['day'].value);
   }
 }

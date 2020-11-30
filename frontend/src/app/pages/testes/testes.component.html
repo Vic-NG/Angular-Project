@@ -1,0 +1,23 @@
+<p>testes works!</p>
+
+
+<form [formGroup]="formDOM">          
+    <div class="row">
+        <!-- Datepicker para data inicial (start) -->
+        <div class="form-group col s12">
+            <label>Data inicial</label>
+            <input #startinput class="form-control datepicker" formControlName="start" type="date">
+        </div>
+
+        <!-- Selector referente a metrica utilizada na analise dos dados (metric) -->
+        <div class="form-group input-field col s12">
+            <select #metricinput class="form-control" formControlName="metric">
+                <option value="" disabled selected>Selecione o valor</option>
+                <option *ngFor="let metric of metricArray" [value]=metric>
+                    {{metric}}
+                </option>
+            </select>
+            <label>Métrica</label>
+        </div>
+   </div>
+</form>
