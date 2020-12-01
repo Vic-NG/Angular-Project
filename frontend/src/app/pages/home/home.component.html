@@ -6,131 +6,212 @@
      
         <div class="card blue-white darken-1">
             <div class="card-content gray-text">
+
                 <span class="card-title">Novo lembrete</span>
+
                 <div class="row">
+
                     <div class="input-field col s6">
+
+                        <i class="material-icons prefix">location_on</i>
+
                         <input 
                         name= "locations" 
                         id= "locations" 
                         type="text"                              
                         class="validate"
                         formControlName="locations"
-                        [ngClass]="aplicaCssErro('locations')"
-                        />
+                        [ngClass]="aplicaCssErro('locations')" />
+
                         <label for="locations">Local</label>
+
+                        <app-campo-control-erro
+                            [mostrarErro]="verificaValidTouched('locations')"
+                            msgErro="Nome do local é obrigatório"
+                        ></app-campo-control-erro>
+
                     </div>
-                    <app-campo-control-erro
-                        [mostrarErro]="verificaValidTouched('locations')"
-                        msgErro="Nome do local é obrigatório"
-                    ></app-campo-control-erro>
+
                     <div class="input-field col s6">
+
+                        <i class="material-icons prefix">date_range</i>
+
                         <input 
                         name="day"    
                         id="day"  
                         type="text" 
-                        class="validate"  
+                        placeholder=""
+                        class="validate datepicker"  
                         formControlName="day"
                         (focus)="datapickerInitialize('day')"           
-                        [ngClass]="aplicaCssErro('day')"
-                        />
+                        [ngClass]="aplicaCssErro('day')" />
+
                         <label for="day">Data</label>
+                        
+                        <app-campo-control-erro
+                            [mostrarErro]="verificaValidTouched('day')"
+                            msgErro="Data é obrigatório."
+                        ></app-campo-control-erro>
+
                     </div>
-                    <app-campo-control-erro
-                        [mostrarErro]="verificaValidTouched('day')"
-                        msgErro="Data é obrigatório."
-                    ></app-campo-control-erro>
                 </div>
+
                 <div class="row">
+
                     <div class="input-field col s6">
+
+                        <i class="material-icons prefix">call_made</i>
+
                         <input 
-                            name= "start" 
-                            id= "start" 
-                            type="text"                           
-                            class="validate"
-                            formControlName="start"
-                            (focus)="timepickerInitialize('start')" 
-                            [ngClass]="aplicaCssErro('start')"
-                            />
+                        name= "start" 
+                        id= "start" 
+                        type="text"                           
+                        class="validate timepicker" 
+                        formControlName="start"
+                        (focus)="timepickerInitialize('start')" 
+                        [ngClass]="aplicaCssErro('start')" />
+
                         <label for="start">Entrada</label>
+
+                        <app-campo-control-erro
+                            [mostrarErro]="verificaValidTouched('start')"
+                            msgErro="Escolha hora de entrada."
+                        ></app-campo-control-erro>
+
                     </div>
-                    <app-campo-control-erro
-                        [mostrarErro]="verificaValidTouched('start')"
-                        msgErro="Escolha hora de entrada."
-                    ></app-campo-control-erro>
+
                     <div class="input-field col s6">
+
+                        <i class="material-icons prefix">call_received</i>
+
                         <input 
-                            name= "end" 
-                            id= "end" 
-                            type="text"                              
-                            class="validate"
-                            formControlName="end"
-                            (focus)="timepickerInitialize('end')" 
-                            [ngClass]="aplicaCssErro('end')"
+                        name= "end" 
+                        id= "end" 
+                        type="text"                              
+                        class="validate timepicker"
+                        formControlName="end"
+                        (focus)="timepickerInitialize('end')" 
+                        [ngClass]="aplicaCssErro('end')"
                         />
+
                         <label for="end">Saida</label>
+
+                        <app-campo-control-erro
+                        [mostrarErro]="verificaValidTouched('end')"
+                        msgErro="Escolha hora de saida."
+                        ></app-campo-control-erro>
+
                     </div>
-                    <app-campo-control-erro
-                    [mostrarErro]="verificaValidTouched('end')"
-                    msgErro="Escolha hora de saida."
-                    ></app-campo-control-erro>
                     
-                    <div class="input-field col s9">
+                    <div class="input-field col s6">
+
+                        <i class="material-icons prefix">local_activity</i>
+
                         <input 
                         name= "atv_name"  
                         id= "atv_name"  
                         type="text"                              
                         class="validate"
                         formControlName="atv_name"
-                        [ngClass]="aplicaCssErro('atv_name')"
-                        />
+                        [ngClass]="aplicaCssErro('atv_name')" />
+
                         <label for="atv_name">Atividades</label>
+
+                        <app-campo-control-erro
+                            [mostrarErro]="verificaValidTouched('atv_name')"
+                            msgErro="Digite ao menos uma atividade."
+                        ></app-campo-control-erro>
+
                     </div>
-                    <app-campo-control-erro
-                        [mostrarErro]="verificaValidTouched('atv_name')"
-                        msgErro="Digite ao menos uma atividade."
-                    ></app-campo-control-erro>
+
                    <!--  <div class="input-field col s3">
                         <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>     
                     </div> -->
                     <!-- <input type="text" id="start" class="timepicker"> -->
                    <!--  <label for="start" class="active">Start</label> -->
+
                 </div>  
+
             </div>
+
             <div class="card-action">
+
                 <button 
-                    class="btn waves-effect waves-light" 
-                    style="background-color:mediumpurple;" 
-                    type="submit" 
-                    name="action"
-                >Criar
-                <i class="material-icons right">send</i>
+                class="btn waves-effect waves-light" 
+                style="background-color:mediumpurple;" 
+                type="submit" 
+                name="action" >Criar
+                    <i class="material-icons right">send</i>
                 </button>
             </div>
+
         </div>
 
 
         <div class="card blue-grey darken-1" *ngFor="let item of reminderList">
+
             <div class="card-content white-text">
+
                 <span class="card-title red-text">{{ item.locations }}</span>
+
                 <div class="row">
-                    <div class="input-field col s6">
-                        Data:&nbsp;{{ item.day.format }}<br>
-                        Entrada:&nbsp;{{ item.start }}<br>
-                        Saida:&nbsp;{{ item.end }}
+
+                    <div class="input-field col s6" style="display: flex;">
+
+                        <i class="material-icons">location_city</i>
+                        &nbsp;Data:&nbsp;{{ item.day }}<br>
+                        
                     </div>
-                    <div class="input-field col s6">
-                        Atividades:<br>{{ item.atv_name.join(', ')}}
+
+                   
+                    <div class="input-field col s6" style="display: flex;">
+
+                        <i class="material-icons">bookmark</i>
+                        &nbsp;Atividades:<br>&nbsp;{{ item.atv_name.join(', ')}}
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="input-field col s6" style="display: flex;">
+
+                        <i class="material-icons">av_timer</i>
+                        &nbsp;Entrada:&nbsp;{{ item.start }}<br>
+                        
                     </div>
                 </div>
+
+                
+                <div class="row">
+
+                    <div class="input-field col s6" style="display: flex;">
+
+                        <i class="material-icons">av_timer</i>
+                        &nbsp;Saida:&nbsp;{{ item.end }}
+
+                    </div>
+                </div>
+
+
             </div>
+
             <div class="card-action">
+
                 <a (click)="delReminder($event)">DELETAR LEMBRETE</a>
+
                 <a href="#">This is a link</a>
+
             </div>
+
         </div>
+
     </form>
 
     <a class="waves-effect waves-light btn-small" (click)="logoutApplication($event)">
+
         <i class="material-icons left">exit_to_app</i>Logout
+
     </a>
 </div>
