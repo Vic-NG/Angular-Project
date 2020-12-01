@@ -25,14 +25,14 @@
           class="validate"
         >
         <label for="email">Email</label>
+        <app-campo-control-erro
+          [mostrarErro]="verificaValidTouched('email')"
+          msgErro="E-mail é obrigatório."
+        ></app-campo-control-erro>
       </div>
       <div class="col s3"></div>
     </div>
 
-    <app-campo-control-erro
-      [mostrarErro]="verificaValidTouched('email')"
-      msgErro="E-mail é obrigatório."
-    ></app-campo-control-erro>
 
     <div class="row">
       <div class="col s3"></div>
@@ -46,14 +46,14 @@
           class="validate"
         >
         <label for="password">Digite sua senha</label>
+        <app-campo-control-erro
+          [mostrarErro]="verificaValidTouched('password')"
+          msgErro="Senha é obrigatório."
+        ></app-campo-control-erro>
       </div>
       <div class="col s3"></div>
     </div>
 
-    <app-campo-control-erro
-      [mostrarErro]="verificaValidTouched('password')"
-      msgErro="Senha é obrigatório."
-    ></app-campo-control-erro>
 
     <div class="row">
       <div class="col s3"></div>
@@ -85,7 +85,5 @@
       </div>
       <div class="col s3"></div>
     </div>
-    
-    <app-form-debug [form]="login"></app-form-debug>
   </form>
 </html>

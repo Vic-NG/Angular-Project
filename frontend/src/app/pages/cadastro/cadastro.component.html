@@ -1,15 +1,14 @@
-<head>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
+<html class="registerBackground">
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
 
-<body class="bodyreg">
-  <form class="formRegister" [formGroup]="formRegister" (ngSubmit)="onSubmit()">
-    <div class='container'>
-      <h5>CADASTRO</h5>
-
+  <div class='container'>
+    <form class="formRegister" [formGroup]="formRegister" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col s3"></div>
         <div class="input-field col s6">
+          <i class="material-icons prefix" style="color:#fff">person</i>
           <input  
             name="fullname"
             id="fullname" 
@@ -17,19 +16,19 @@
             formControlName="name"
             [ngClass]="aplicaCssErro('name')"
           />
-        <label for="fullname">Digite seu nome</label>
+          <label for="fullname">Digite seu nome</label>
+          <app-campo-control-erro
+            [mostrarErro]="verificaValidTouched('name')"
+            msgErro="Nome é obrigatório."
+          ></app-campo-control-erro>  
         </div>
         <div class="col s3"></div>
       </div>
-
-      <app-campo-control-erro
-        [mostrarErro]="verificaValidTouched('name')"
-        msgErro="Nome é obrigatório."
-      ></app-campo-control-erro>  
-
+      
       <div class="row">
         <div class="col s3"></div>
         <div class="input-field col s6">
+          <i class="material-icons prefix" style="color:#fff">mail</i>
           <input  
             name="email"
             id="email"
@@ -39,18 +38,19 @@
             class="validate"
           >
           <label for="email">Email</label>
+          <app-campo-control-erro
+            [mostrarErro]="verificaValidTouched('email')"
+            msgErro="E-mail é obrigatório."
+          ></app-campo-control-erro>
         </div>
         <div class="col s3"></div>
       </div>
 
-      <app-campo-control-erro
-        [mostrarErro]="verificaValidTouched('email')"
-        msgErro="E-mail é obrigatório."
-      ></app-campo-control-erro>
 
       <div class="row">
         <div class="col s3"></div>
         <div class="input-field col s6">
+          <i class="material-icons prefix " style="color:#fff">blur_on</i>
           <input  
             name="password"
             id="password"
@@ -60,14 +60,14 @@
             class="validate"
           >
           <label for="password">Digite sua senha</label>
+          <app-campo-control-erro
+            [mostrarErro]="verificaValidTouched('password')"
+            msgErro="Senha é obrigatório."
+          ></app-campo-control-erro> 
         </div>
         <div class="col s3"></div>
       </div>
 
-      <app-campo-control-erro
-        [mostrarErro]="verificaValidTouched('password')"
-        msgErro="Senha é obrigatório."
-      ></app-campo-control-erro> 
 
 
       <div class="row">
@@ -106,8 +106,6 @@
           </div>
         </div>
       </div>
-  
-      <app-form-debug [form]="formRegister"></app-form-debug>
-    </div>
-  </form>
-</body>
+    </form>
+  </div>
+</html>

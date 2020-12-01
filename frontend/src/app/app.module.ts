@@ -38,7 +38,7 @@ import { TestesComponent } from './pages/testes/testes.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [DatePipe],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

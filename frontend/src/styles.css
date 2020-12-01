@@ -6,6 +6,10 @@
 /* based on angular-toastr css https://github.com/Foxandxss/angular-toastr/blob/cb508fe6801d6b288d3afc525bb40fee1b101650/dist/angular-toastr.css */
 
 /* position */
+html{
+  min-height: 100vh
+}
+
 .toast-center-center {
   top: 50%;
   left: 50%;

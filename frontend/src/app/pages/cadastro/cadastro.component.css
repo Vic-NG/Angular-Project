@@ -1,8 +1,12 @@
-/* .bodyreg{
-  background-color: bisque;
-} */
-
-.container{
-    text-align: center;
+.registerBackground {
+  background-image:url('../../../assets/image/gabriele-garanzelli-PzO_CitnJdI-unsplash.jpg');
+  background-size: cover;
 }
+
+@media screen and (max-width: 500px){
+  .registerBackground{
+      background-attachment: fixed;
+  }
+}
+
 
