@@ -10,7 +10,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
-import * as moment from 'moment';
+
 
 declare const M: any;
 
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
         console.log(dados);
         this.toastr.success(dados.message);
         setTimeout(() => {
-          window.location.reload();
+          this.getListReminder()
         }, 3000);
         //this.router.navigateByUrl('/home');
       },
@@ -77,10 +77,8 @@ export class HomeComponent implements OnInit {
   getListReminder() {
     this.service.getReminders().subscribe(
       (dados: any) => {
-        /*  if(!dados?.token) return console.log(dados);
-       localStorage.getItem("token"); */
-        this.reminderList = dados;
-        console.log(this.reminderList);
+        const teste = this.reminderList.filter( x => x.dados === {_id} );
+        console.log(teste);
       },
       (err: any) => {
         this.toastr.warning(err.error.message);
@@ -168,7 +166,5 @@ export class HomeComponent implements OnInit {
       start: [null, [Validators.required]],
       end: [null, [Validators.required]],
     });
-
-    console.log(this.reminder.controls['day'].value);
   }
 }
