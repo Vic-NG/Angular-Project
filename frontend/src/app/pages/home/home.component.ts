@@ -2,17 +2,14 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  ViewChild,
-  ElementRef,
 } from '@angular/core';
 import { ReminderService } from '../../services/reminder.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
-
-
-declare const M: any;
+import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap'
+import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -23,13 +20,22 @@ declare const M: any;
 export class HomeComponent implements OnInit {
   reminderList: any[] = [];
   reminder: FormGroup;
+  model: NgbDateStruct;
+  time = {hour: 13, minute: 30};
+  spinners = true;
 
+  faCalendarDay = faCalendarDay;
+ 
   constructor(
     private router: Router,
     private toastr: ToastrService,
     private service: ReminderService,
     private formBuilder: FormBuilder
   ) { }
+  
+  toggleSpinners() {
+      this.spinners = !this.spinners;
+  }
 
   // Função de submit do form com validações
   onSubmit() {
@@ -87,55 +93,6 @@ export class HomeComponent implements OnInit {
   }
 
   // Funçoes auxiliares
-  datapickerInitialize(id: string) {
-    let elems = document.getElementById(id);
-    M.Datepicker.init(elems, {
-      format: 'dd/mm/yyyy',
-      autoclose: false,
-      showClearBtn: true,
-      minDate: new Date(),
-      i18n: {
-        months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-        weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
-        weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-        weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-        today: 'Hoje',
-        clear: 'Limpar',
-        cancel: 'Sair',
-        done: 'Confirmar',
-        labelMonthNext: 'Próximo mês',
-        labelMonthPrev: 'Mês anterior',
-        labelMonthSelect: 'Selecione um mês',
-        labelYearSelect: 'Selecione um ano',
-        selectMonths: true,
-        selectYears: 15,
-      },
-      onSelect: (dateText: any) => {
-        this.reminder.controls[id].setValue(dateText);
-      },
-    });
-  }
-
-  timepickerInitialize(id: string) {
-    let elems = document.getElementById(id);
-
-    M.Timepicker.init(elems, {
-      autoclose: false,
-      twelveHour: false,
-      showClearBtn: true,
-      i18n: {
-        clear: "Limpar",
-        done: "Confirmar",
-        cancel: "Cancelar"
-      },
-      onSelect: (dateText: any) => {
-        dateText = new Date(dateText * 1000)
-        this.reminder.controls[id].setValue(dateText);
-      }
-    });
-  }
-
   logoutApplication(event: Event) {
     event.preventDefault(); // Prevents browser following the link
     localStorage.clear();

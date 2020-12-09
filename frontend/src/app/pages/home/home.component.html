@@ -1,17 +1,28 @@
 <div class="container">
-    
     <br>
-    
     <form [formGroup]="reminder" (ngSubmit)="onSubmit()">  
-     
         <div class="card">
             <div class="card-body">
-
                 <h2 class="card-title">Novo lembrete</h2>
-
                 <div class="row">
+                    <div class="col-6">                         
+                        <label for="day">Data</label>
+                        <div class="input-group">
+                            <input 
+                            class="form-control" 
+                            placeholder="dd-mm-aaaa"
+                            name="day" 
+                            ngbDatepicker #day="ngbDatepicker"   
+                            id="day"
+                            formControlName="day"
+                            />
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="day.toggle()" type="button">
+                                    <fa-icon [icon]="faCalendarDay"></fa-icon>
+                                </button>
+                            </div>    
+                        </div>
 
-                    <div class="col-6">                        
                         <label for="locations">Local</label>
                         <input 
                         name= "locations" 
@@ -20,48 +31,7 @@
                         formControlName="locations"
                         class="form-control"
                         />
-                    </div>
-                    
-                    <div class="col-6">
-                        <label for="day">Data</label>
-                        <input 
-                        name="day"    
-                        id="day"  
-                        type="date" 
-                        placeholder=""
-                        class="form-control"  
-                        formControlName="day"         
-                        />
-                    </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-6">                    
-                        <label for="start">Entrada</label>
-                        <input 
-                        name= "start" 
-                        id= "start" 
-                        type="date"                           
-                        class="form-control"  
-                        formControlName="start"
-                        />
-                    </div>
-
-                    <div class="col-6">
-                        <label for="end">Saida</label>
-                        <input 
-                        name= "end" 
-                        id= "end" 
-                        type="date"                              
-                        class="form-control" 
-                        formControlName="end"
-                        />
-                    </div>
-                    
-                    <div class="col"></div>
-
-                    <div class="col-6">
+                       
                         <label for="atv_name">Atividades</label>
                         <input 
                         name= "atv_name"  
@@ -72,17 +42,34 @@
                         />
                     </div>
 
-                    <div class="col"></div>
-                </div>  
-                
-                <button class="btn btn-primary" style="background-color:mediumpurple;" type="submit">Criar lembrete</button>
+                    <div class="col-sm-1"></div>
 
+                    <div class="col-sm-2">   
+                        <label for="start">Entrada</label>
+                        <ngb-timepicker 
+                        [spinners]="spinners"
+                        id="start"
+                        formControlName="start"
+                        >
+                        </ngb-timepicker>    
+                    </div>  
+                  
+                    <div class="col-sm-2">
+                        <label for="end">Saida</label>
+                        <ngb-timepicker 
+                        [spinners]="spinners"
+                        id="end"
+                        formControlName="end"
+                        >
+                        </ngb-timepicker>     
+                    </div>
+                </div>       
+                <br>         
+                <button class="btn btn-primary" style="background-color:mediumpurple;" type="submit">Criar lembrete</button>
             </div>
-        
         </div>
 
     </form>
-
     <br>
     <div class="card mb-3"  *ngFor="let item of reminderList">
 
@@ -102,13 +89,9 @@
                 </div>
             </div>
         </div>
-
     </div>
-
     <br>
-
     <a class="btn btn-primary" (click)="logoutApplication($event)">
         Logout
     </a>
-      
 </div>
