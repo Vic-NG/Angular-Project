@@ -25,6 +25,7 @@ router.post('/new', auth, async (req, res) => {
         return res.status(201).send({ reminders, message:'Lembrete criado com sucesso!' });
         
     } catch (error) {
+        console.log(error);
         return res.status(500).send({ message:'Erro ao cadastrar lembrete.' });
     }
 

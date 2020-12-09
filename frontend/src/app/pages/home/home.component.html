@@ -21,14 +21,9 @@
                         type="text"                              
                         class="validate"
                         formControlName="locations"
-                        [ngClass]="aplicaCssErro('locations')" />
+                        />
 
                         <label for="locations">Local</label>
-
-                        <app-campo-control-erro
-                            [mostrarErro]="verificaValidTouched('locations')"
-                            msgErro="Nome do local é obrigatório"
-                        ></app-campo-control-erro>
 
                     </div>
 
@@ -44,14 +39,9 @@
                         class="validate datepicker"  
                         formControlName="day"
                         (focus)="datapickerInitialize('day')"           
-                        [ngClass]="aplicaCssErro('day')" />
+                        />
 
                         <label for="day">Data</label>
-                        
-                        <app-campo-control-erro
-                            [mostrarErro]="verificaValidTouched('day')"
-                            msgErro="Data é obrigatório."
-                        ></app-campo-control-erro>
 
                     </div>
                 </div>
@@ -68,15 +58,10 @@
                         type="text"                           
                         class="validate timepicker" 
                         formControlName="start"
-                        (focus)="timepickerInitialize('start')" 
-                        [ngClass]="aplicaCssErro('start')" />
+                        (change)="timepickerInitialize('start')" 
+                        />
 
                         <label for="start">Entrada</label>
-
-                        <app-campo-control-erro
-                            [mostrarErro]="verificaValidTouched('start')"
-                            msgErro="Escolha hora de entrada."
-                        ></app-campo-control-erro>
 
                     </div>
 
@@ -90,17 +75,10 @@
                         type="text"                              
                         class="validate timepicker"
                         formControlName="end"
-                        (focus)="timepickerInitialize('end')" 
-                        [ngClass]="aplicaCssErro('end')"
+                        (change)="timepickerInitialize('end')" 
                         />
 
                         <label for="end">Saida</label>
-
-                        <app-campo-control-erro
-                        [mostrarErro]="verificaValidTouched('end')"
-                        msgErro="Escolha hora de saida."
-                        ></app-campo-control-erro>
-
                     </div>
                     
                     <div class="input-field col s6">
@@ -113,15 +91,9 @@
                         type="text"                              
                         class="validate"
                         formControlName="atv_name"
-                        [ngClass]="aplicaCssErro('atv_name')" />
+                        />
 
                         <label for="atv_name">Atividades</label>
-
-                        <app-campo-control-erro
-                            [mostrarErro]="verificaValidTouched('atv_name')"
-                            msgErro="Digite ao menos uma atividade."
-                        ></app-campo-control-erro>
-
                     </div>
 
                    <!--  <div class="input-field col s3">
@@ -146,6 +118,8 @@
             </div>
 
         </div>
+
+    </form>
 
 
         <div class="card blue-grey darken-1" *ngFor="let item of reminderList">
@@ -194,20 +168,18 @@
                     </div>
                 </div>
 
+                <div class="card-action">
+    
+                    <button (click)="delReminder($event, item._id)">DELETAR LEMBRETE</button>
+
+                </div>
 
             </div>
 
-            <div class="card-action">
-
-                <a (click)="delReminder($event)">DELETAR LEMBRETE</a>
-
-                <a href="#">This is a link</a>
-
-            </div>
 
         </div>
 
-    </form>
+    
 
     <a class="waves-effect waves-light btn-small" (click)="logoutApplication($event)">
 

@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     console.log(this.reminder);
 
     if (!this.reminder.valid) {
-      console.log('Lembrete inválido');
+      this.toastr.error('Preencha todos os campos.')
       Object.keys(this.reminder.controls).forEach((campo) => {
         console.log(campo);
         const controle = this.reminder.get(campo);
@@ -59,13 +59,6 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  aplicaCssErro(campo: string) {
-    return {
-      'has-error': this.verificaValidTouched(campo),
-      'has-feedback': this.verificaValidTouched(campo),
-    };
-  }
-
   verificaValidTouched(campo: string) {
     return (
       !this.reminder.get(campo).valid &&
@@ -77,8 +70,8 @@ export class HomeComponent implements OnInit {
   getListReminder() {
     this.service.getReminders().subscribe(
       (dados: any) => {
-        const teste = this.reminderList.filter( x => x.dados === {_id} );
-        console.log(teste);
+        this.reminderList = dados;
+        console.log(dados);
       },
       (err: any) => {
         this.toastr.warning(err.error.message);
@@ -87,9 +80,12 @@ export class HomeComponent implements OnInit {
   }
 
   // Chama a rota de remover um lembrete
-  delReminder(event: Event) {
-    this.service.deleteReminder(this.reminder.value).subscribe(() => {
-      console.log(`Lembrete deletado com id = ${this.reminder.value}`);
+  delReminder(event: Event, _id) {
+    this.service.deleteReminder(_id).subscribe((x) => {
+      //console.log(`Lembrete deletado com id = ${this.reminder.value}`);
+      console.log(_id);
+      this.toastr.success(x.message);
+      this.getListReminder();
     }),
       // this.toastr.info(del.message);
       (err: any) => {

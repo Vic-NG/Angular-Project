@@ -1,89 +1,88 @@
 <html class="loginbackground">
-  <head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  </head>
+  <div class="container">
 
-  <div class="row">  
-    <div class="col s3"></div>
-      <div class="input-field col s6">
-      <h1 style="color:beige; text-align: center;">Bem vindo ! :)</h1>
+    <div class="row">  
+      <div class="col-sm"></div>
+        <div class="input-field col s6">
+        <h1 style="color:beige; text-align: center;">Bem vindo ! :)</h1>
+        </div>
+      <div class="col-sm"></div>
+    </div>
+
+    <form [formGroup]="login" (ngSubmit)="onSubmit()">  
+
+      <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+          <label for="email">Email</label>
+          <input  
+            name="email"
+            id="email"
+            type="text"
+            formControlName="email"
+            [ngClass]="aplicaCssErro('email')"
+            class="form-control"  
+          >
+          <app-campo-control-erro
+            [mostrarErro]="verificaValidTouched('email')"
+            msgErro="E-mail é obrigatório."
+          ></app-campo-control-erro>
+        </div>
+        <div class="col-sm"></div>
       </div>
-    <div class="col s3"></div>
+
+
+      <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+          <input  
+            name="password"
+            id="password"
+            type="password"
+            formControlName="password"
+            [ngClass]="aplicaCssErro('password')"
+            class="validate"
+          >
+          <label for="password">Digite sua senha</label>
+          <app-campo-control-erro
+            [mostrarErro]="verificaValidTouched('password')"
+            msgErro="Senha é obrigatório."
+          ></app-campo-control-erro>
+        </div>
+        <div class="col-sm"></div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm"></div>
+        <div class="input-field col s6" style="text-align: center;">
+          <button 
+            class="btn waves-effect waves-light" 
+            style="background-color:mediumpurple;" 
+            type="submit" 
+            name="action"
+            >Login
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+        <div class="col-sm"></div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-sm"></div>
+        <div class="input-field col s6" style="text-align: center;">
+          <ul class="pagination">
+            <li class="waves-effect">
+              <a href="/cadastro" style="color: beige; text-align: center;">
+              Não tem conta? Clique aqui para registrar.
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm"></div>
+      </div>
+    </form>
   </div>
-
-  <form [formGroup]="login" (ngSubmit)="onSubmit()">  
-
-    <div class="row">
-      <div class="col s3"></div>
-      <div class="input-field col s6">
-        <input  
-          name="email"
-          id="email"
-          type="text"
-          formControlName="email"
-          [ngClass]="aplicaCssErro('email')"
-          class="validate"
-        >
-        <label for="email">Email</label>
-        <app-campo-control-erro
-          [mostrarErro]="verificaValidTouched('email')"
-          msgErro="E-mail é obrigatório."
-        ></app-campo-control-erro>
-      </div>
-      <div class="col s3"></div>
-    </div>
-
-
-    <div class="row">
-      <div class="col s3"></div>
-      <div class="input-field col s6">
-        <input  
-          name="password"
-          id="password"
-          type="password"
-          formControlName="password"
-          [ngClass]="aplicaCssErro('password')"
-          class="validate"
-        >
-        <label for="password">Digite sua senha</label>
-        <app-campo-control-erro
-          [mostrarErro]="verificaValidTouched('password')"
-          msgErro="Senha é obrigatório."
-        ></app-campo-control-erro>
-      </div>
-      <div class="col s3"></div>
-    </div>
-
-
-    <div class="row">
-      <div class="col s3"></div>
-      <div class="input-field col s6" style="text-align: center;">
-        <button 
-          class="btn waves-effect waves-light" 
-          style="background-color:mediumpurple;" 
-          type="submit" 
-          name="action"
-          >Login
-          <i class="material-icons right">send</i>
-        </button>
-      </div>
-      <div class="col s3"></div>
-    </div>
-
-    <br>
-
-    <div class="row">
-      <div class="col s3"></div>
-      <div class="input-field col s6" style="text-align: center;">
-        <ul class="pagination">
-          <li class="waves-effect">
-            <a href="/cadastro" style="color: beige; text-align: center;">
-            Não tem conta? Clique aqui para registrar.
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="col s3"></div>
-    </div>
-  </form>
 </html>
