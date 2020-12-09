@@ -59,13 +59,6 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  verificaValidTouched(campo: string) {
-    return (
-      !this.reminder.get(campo).valid &&
-      (this.reminder.get(campo).touched || this.reminder.get(campo).dirty)
-    );
-  }
-
   // Chama a rota de lista de lembretes criados pelo usuário
   getListReminder() {
     this.service.getReminders().subscribe(
@@ -81,7 +74,7 @@ export class HomeComponent implements OnInit {
 
   // Chama a rota de remover um lembrete
   delReminder(event: Event, _id) {
-    this.service.deleteReminder(_id).subscribe((x) => {
+    this.service.deleteReminder(_id).subscribe((x: any) => {
       //console.log(`Lembrete deletado com id = ${this.reminder.value}`);
       console.log(_id);
       this.toastr.success(x.message);
