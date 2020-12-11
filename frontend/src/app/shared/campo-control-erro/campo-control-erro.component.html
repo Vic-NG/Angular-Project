@@ -1,7 +1,8 @@
-<div *ngIf="mostrarErro">
+
+<div *ngIf="mostrarErro" >
   <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-  <span class="sr-only">(error)</span>
-  <div class="card-panel red">
-    <span class="white-text text-darken-2">{{msgErro}}</span>
+  <span class="sr-only" style="display: none">(error)</span>
+  <div class="alert alert-danger errorDiv" role="alert">
+    {{ msgErro }}
   </div>
 </div>

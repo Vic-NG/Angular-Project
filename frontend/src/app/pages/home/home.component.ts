@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
 import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap'
-import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDay, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+
+var date = new Date();
 
 @Component({
   selector: 'app-home',
@@ -20,12 +22,14 @@ import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 export class HomeComponent implements OnInit {
   reminderList: any[] = [];
   reminder: FormGroup;
-  model: NgbDateStruct;
-  time = {hour: 13, minute: 30};
+  model: NgbDateStruct = { day: date.getUTCDate(), month: date.getUTCMonth() + 1, year: date.getUTCFullYear()}; 
   spinners = true;
-
   faCalendarDay = faCalendarDay;
+  faSignOutAlt = faSignOutAlt;
  
+  
+  // model: NgbDateStruct;
+
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -33,9 +37,9 @@ export class HomeComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
   
-  toggleSpinners() {
+ /*  toggleSpinners() {
       this.spinners = !this.spinners;
-  }
+  } */
 
   // Função de submit do form com validações
   onSubmit() {
@@ -56,9 +60,7 @@ export class HomeComponent implements OnInit {
       (dados: any) => {
         console.log(dados);
         this.toastr.success(dados.message);
-        setTimeout(() => {
-          this.getListReminder()
-        }, 3000);
+        this.getListReminder();
         //this.router.navigateByUrl('/home');
       },
       (err: any) => this.toastr.error(err.error.message)

@@ -4,6 +4,8 @@ import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 import { LoginComponent } from './login.component';
@@ -15,7 +17,8 @@ import { LoginComponent } from './login.component';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    FontAwesomeModule
   ],
   providers:[LoginService]
 })

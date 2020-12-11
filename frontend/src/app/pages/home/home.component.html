@@ -7,7 +7,12 @@
                 <div class="row">
                     <div class="col-6">                         
                         <label for="day">Data</label>
-                        <div class="input-group">
+                        <input 
+                        type="date" 
+                        id="day" 
+                        formControlName="day" 
+                        name= "day"/>
+                        <!-- <div class="input-group">
                             <input 
                             class="form-control" 
                             placeholder="dd-mm-aaaa"
@@ -21,8 +26,8 @@
                                     <fa-icon [icon]="faCalendarDay"></fa-icon>
                                 </button>
                             </div>    
-                        </div>
-
+                        </div> -->
+                        <br>
                         <label for="locations">Local</label>
                         <input 
                         name= "locations" 
@@ -44,24 +49,35 @@
 
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-2">   
+                    <div class="col-sm-3">   
                         <label for="start">Entrada</label>
-                        <ngb-timepicker 
+                        <input 
+                        type="date" 
+                        id="start" 
+                        formControlName="start" 
+                        name= "start"/>
+
+                        <!-- <ngb-timepicker 
                         [spinners]="spinners"
                         id="start"
                         formControlName="start"
                         >
-                        </ngb-timepicker>    
+                        </ngb-timepicker>     -->
                     </div>  
                   
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <label for="end">Saida</label>
-                        <ngb-timepicker 
+                        <input 
+                        type="date" 
+                        id="end" 
+                        formControlName="end" 
+                        name= "end"/>
+                        <!-- <ngb-timepicker 
                         [spinners]="spinners"
                         id="end"
                         formControlName="end"
                         >
-                        </ngb-timepicker>     
+                        </ngb-timepicker>     --> 
                     </div>
                 </div>       
                 <br>         
@@ -71,7 +87,7 @@
 
     </form>
     <br>
-    <div class="card mb-3"  *ngFor="let item of reminderList">
+    <div class="card mb-3" *ngFor="let item of reminderList">
 
         <div class="row g-0">
 
@@ -92,6 +108,6 @@
     </div>
     <br>
     <a class="btn btn-primary" (click)="logoutApplication($event)">
-        Logout
+        Logout&nbsp;<fa-icon [icon]="faSignOutAlt"></fa-icon>
     </a>
 </div>

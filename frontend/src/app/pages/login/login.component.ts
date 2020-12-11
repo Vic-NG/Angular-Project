@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../services/login-service.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { faDoorOpen } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastrService } from 'ngx-toastr';
 
@@ -15,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
 
   login: FormGroup;
+  faDoorOpen = faDoorOpen;
   
   constructor(
     private toastr: ToastrService,

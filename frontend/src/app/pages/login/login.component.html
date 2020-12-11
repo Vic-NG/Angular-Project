@@ -3,18 +3,18 @@
 
     <div class="row">  
       <div class="col-sm"></div>
-        <div class="input-field col s6">
         <h1 style="color:beige; text-align: center;">Bem vindo ! :)</h1>
-        </div>
       <div class="col-sm"></div>
     </div>
+
+    <br>
 
     <form [formGroup]="login" (ngSubmit)="onSubmit()">  
 
       <div class="row">
-        <div class="col-sm"></div>
-        <div class="col-sm">
-          <label for="email">Email</label>
+        <div class = "col"></div>
+        <div class = "col-sm-4">
+          <label for="email" style="color:#fff">Email</label>
           <input  
             name="email"
             id="email"
@@ -23,35 +23,36 @@
             [ngClass]="aplicaCssErro('email')"
             class="form-control"  
           >
+          <br>
           <app-campo-control-erro
             [mostrarErro]="verificaValidTouched('email')"
             msgErro="E-mail é obrigatório."
           ></app-campo-control-erro>
         </div>
-        <div class="col-sm"></div>
+        <div class = "col"></div>
       </div>
 
-
       <div class="row">
-        <div class="col-sm"></div>
-        <div class="col-sm">
+        <div class = "col"></div>
+        <div class = "col-sm-4">
+          <label for="password" style="color:#fff">Digite sua senha</label>
           <input  
             name="password"
             id="password"
             type="password"
             formControlName="password"
             [ngClass]="aplicaCssErro('password')"
-            class="validate"
+            class="form-control"
           >
-          <label for="password">Digite sua senha</label>
+          <br>
           <app-campo-control-erro
             [mostrarErro]="verificaValidTouched('password')"
             msgErro="Senha é obrigatório."
           ></app-campo-control-erro>
         </div>
-        <div class="col-sm"></div>
+        <div class = "col"></div>
       </div>
-
+      <br>
 
       <div class="row">
         <div class="col-sm"></div>
@@ -62,7 +63,7 @@
             type="submit" 
             name="action"
             >Login
-            <i class="material-icons right">send</i>
+            <fa-icon [icon]="faDoorOpen" style="color: #fff;"></fa-icon>
           </button>
         </div>
         <div class="col-sm"></div>
@@ -71,18 +72,13 @@
       <br>
 
       <div class="row">
-        <div class="col-sm"></div>
-        <div class="input-field col s6" style="text-align: center;">
-          <ul class="pagination">
-            <li class="waves-effect">
-              <a href="/cadastro" style="color: beige; text-align: center;">
-              Não tem conta? Clique aqui para registrar.
-              </a>
-            </li>
-          </ul>
+        <div class="col"></div>
+        <div class="col-sm-4">
+          <a href="/cadastro" style="white-space: pre;">Não tem conta? Clique aqui para registrar.</a>    
         </div>
-        <div class="col-sm"></div>
+        <div class="col"></div>
       </div>
+       
     </form>
   </div>
 </html>
