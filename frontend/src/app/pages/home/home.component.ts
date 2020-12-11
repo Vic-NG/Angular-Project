@@ -7,11 +7,10 @@ import { ReminderService } from '../../services/reminder.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
 import { ToastrService } from 'ngx-toastr';
 import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap'
 import { faCalendarDay, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-
-var date = new Date();
 
 @Component({
   selector: 'app-home',
@@ -19,14 +18,14 @@ var date = new Date();
   styleUrls: ['./home.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
+
 export class HomeComponent implements OnInit {
   reminderList: any[] = [];
   reminder: FormGroup;
-  model: NgbDateStruct = { day: date.getUTCDate(), month: date.getUTCMonth() + 1, year: date.getUTCFullYear()}; 
+  model: NgbDateStruct; 
   spinners = true;
   faCalendarDay = faCalendarDay;
-  faSignOutAlt = faSignOutAlt;
- 
+  faSignOutAlt = faSignOutAlt; 
   
   // model: NgbDateStruct;
 
