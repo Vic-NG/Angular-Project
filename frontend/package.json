@@ -29,7 +29,6 @@
     "ag-grid-community": "^23.2.1",
     "bootstrap": "^5.0.0-beta1",
     "dbjson": "^1.0.0",
-    "moment": "^2.29.1",
     "ngx-toast": "^1.1.4",
     "ngx-toastr": "^13.1.0",
     "rxjs": "^6.6.3",

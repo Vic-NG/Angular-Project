@@ -8,8 +8,6 @@ import { HomeComponent } from './home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-
-
 @NgModule({
   declarations: [HomeComponent],
   imports: [
@@ -18,7 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SharedModule,
     NgbModule,
     FormsModule,
-    FontAwesomeModule,
+    FontAwesomeModule
   ],
   providers: [ReminderService]
 })

@@ -1,1 +1,19 @@
 
+.customDate {
+    height: 40px;
+    border: 1px solid #ced4da;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    width: 100%;
+    border-radius: .25rem;
+    appearance: none;
+}
+
+.customDate:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+}

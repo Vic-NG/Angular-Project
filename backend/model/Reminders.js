@@ -16,12 +16,16 @@ const dateType = {
   default: formatedDate
 };
 
+const timeType = {
+  type: String,
+}
+
 const ReminderSchema = new Schema({
     locations: reqString,
     day: dateType,
     atv_name: [reqString],
-    start: dateType,
-    end: dateType,
+    start: timeType,
+    end: timeType,
     created: { type: Date, default: Date.now },
 },
 {
