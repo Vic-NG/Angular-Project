@@ -27,9 +27,6 @@ const ReminderSchema = new Schema({
     start: timeType,
     end: timeType,
     created: { type: Date, default: Date.now },
-},
-{
-  timestamps: true
 });
 
 module.exports = mongoose.model("Reminder", ReminderSchema);
