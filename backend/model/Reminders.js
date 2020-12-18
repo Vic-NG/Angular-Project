@@ -17,13 +17,18 @@ const dateType = {
 };
 
 const timeType = {
-  type: String,
+  type: String
+}
+
+const atvType = {
+  id: Number,
+  name: String
 }
 
 const ReminderSchema = new Schema({
     locations: reqString,
     day: dateType,
-    atv_name: [reqString],
+    atv_name: [atvType],
     start: timeType,
     end: timeType,
     created: { type: Date, default: Date.now },
