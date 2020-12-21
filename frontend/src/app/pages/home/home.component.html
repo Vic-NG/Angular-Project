@@ -83,4 +83,9 @@
     <a class="btn btn-primary" (click)="logoutApplication($event)">
         Logout&nbsp;<fa-icon [icon]="faSignOutAlt"></fa-icon>
     </a>
+
+
+    <div formArrayName="atv_name">
+        <div class="row" *ngFor="let atvs of reminder.get('atv_name').controls; let i = index"
+            [formGroupName]="i">
 </div>

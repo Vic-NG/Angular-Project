@@ -4,12 +4,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ReminderService } from '../../services/reminder.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
 import { ToastrService } from 'ngx-toastr';
-import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap'
 import { faCalendarDay, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -22,7 +21,6 @@ import { faCalendarDay, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 export class HomeComponent implements OnInit {
   reminderList: any[] = [];
   reminder: FormGroup;
-  model: NgbDateStruct; 
   spinners = true;
   faCalendarDay = faCalendarDay;
   faSignOutAlt = faSignOutAlt; 
@@ -33,12 +31,28 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private service: ReminderService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) { }
   
- /*  toggleSpinners() {
-      this.spinners = !this.spinners;
-  } */
+  private createAtvFormGroup(): FormGroup {
+    return new FormGroup({
+      'atividade': new FormControl('', Validators.required),
+    })
+  }
+
+  public addOrRemoveAtv() {
+    const atv_name = this.reminder.get('atv_name') as FormArray
+    atv_name.push(this.createAtvFormGroup());
+  }
+
+  public removeOrClearEmail(i: number) {
+    const atv_name = this.reminder.get('emails') as FormArray
+    if (atv_name.length > 1) {
+      atv_name.removeAt(i);
+    } else {
+      atv_name.reset();
+    }
+  } 
 
   // Função de submit do form com validações
   onSubmit() {
@@ -109,9 +123,9 @@ export class HomeComponent implements OnInit {
     this.reminder = this.formBuilder.group({
       locations: [null, [Validators.required]],
       day: [null, [Validators.required]],
-      atv_name: [null, [Validators.required]],
       start: [null, [Validators.required]],
       end: [null, [Validators.required]],
+      atv_name: this.formBuilder.array([this.createAtvFormGroup()])
     });
   }
 }
