@@ -83,7 +83,10 @@ export class HomeComponent implements OnInit {
   getListReminder() {
     this.service.getReminders().subscribe(
       (dados: any) => {
-        this.reminderList = dados;
+        this.reminderList = dados.map(x => {
+          x.day = new Date(x.day);
+          return x;
+        });
         console.log(dados);
       },
       (err: any) => {

@@ -78,7 +78,7 @@
 
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{ item.locations }}&nbsp;-&nbsp;{{ item.day | date: 'd//yy, h:mm a' }}</h5>
+                    <h5 class="card-title">{{ item.locations }}&nbsp;-&nbsp;{{ item.day | date: 'MMMM d, y, h:mm:ss a z' }}</h5>
                     <p class="card-text">Atividades:&nbsp;{{ item.atv_name.join(', ')}}</p>
                     <p class="card-text"><small class="text-muted">Entrada:&nbsp;{{ item.start}}</small></p>
                     <p class="card-text"><small class="text-muted">Saida:&nbsp;{{ item.end}}</small></p>
