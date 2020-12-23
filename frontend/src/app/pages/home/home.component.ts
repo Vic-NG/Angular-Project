@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   spinners = true;
   faCalendarDay = faCalendarDay;
   faSignOutAlt = faSignOutAlt; 
-  arrayControls;
+
   
   // model: NgbDateStruct;
 
@@ -35,11 +35,7 @@ export class HomeComponent implements OnInit {
     private formBuilder: FormBuilder,
   ) { }
   
-  addOrRemoveAtv() {
-    const atv_name = this.reminder.get('atv_name') as FormArray
-    atv_name.push(new FormControl('', Validators.required));
-    console.log(atv_name);
-  }
+  
 
   removeOrClearEmail(i: number) {
     const atv_name = this.reminder.get('emails') as FormArray
@@ -70,7 +66,9 @@ export class HomeComponent implements OnInit {
     }
 
     // Chama a rota de criação de um lembrete
-    this.service.newReminder(this.reminder.value).subscribe(
+    let body = {...this.reminder.value};
+    delete body["atividade"];
+    this.service.newReminder(body).subscribe(
       (dados: any) => {
         console.log(dados);
         this.toastr.success(dados.message);
@@ -122,6 +120,14 @@ export class HomeComponent implements OnInit {
     this.getListReminder();
     //localStorage.clear();
     this.reminder = this.formBuilder.group({
+      locations: ['', [Validators.required]],
+      day: ['', [Validators.required]],
+      start: ['', [Validators.required]],
+      end: ['', [Validators.required]],
+      atv_name: [[],Validators.required],
+      atividade:['',[]]
+    });
+    /* this.reminder = this.formBuilder.group({
       locations: [null, [Validators.required]],
       day: [null, [Validators.required]],
       start: [null, [Validators.required]],
@@ -129,6 +135,22 @@ export class HomeComponent implements OnInit {
       atv_name: new FormArray([])
     });
 
-    this.arrayControls =  (this.reminder.get('atv_name') as FormArray)  .controls;
+    this.arrayControls =  (this.reminder.get('atv_name') as FormArray)  .controls; */
+  }
+
+  addOrRemoveAtv(e,index = "false") {
+    e.preventDefault();
+  
+    let atividade = this.reminder.controls.atividade.value;
+    let lista = this.reminder.controls.atv_name.value;
+    if(index != "false"){
+      lista.splice(index,1);
+      this.reminder.patchValue({atv_name:lista});
+    }else{
+      if(!atividade) return;
+      lista.push(atividade);
+      this.reminder.patchValue({atv_name:lista,atividade:''});
+    }
+    
   }
 }

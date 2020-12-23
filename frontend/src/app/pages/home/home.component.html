@@ -1,29 +1,30 @@
 <div class="container">
     <br>
-    <form [formGroup]="reminder" (ngSubmit)="onSubmit()">  
+    <form [formGroup]="reminder" (ngSubmit)="onSubmit()">
         <div class="card">
             <div class="card-body">
                 <h2 class="card-title">Novo lembrete</h2>
                 <div class="row">
-                    <div class="col-6">                         
+                    <div class="col-6">
                         <label for="day">Data</label>
-                        <input 
-                        class="customDate"
-                        type="date" 
-                        id="day" 
-                        formControlName="day" 
-                        name= "day"/>
+                        <input class="customDate" type="date" id="day" formControlName="day" name="day" />
                         <br>
                         <label for="locations">Local</label>
-                        <input 
-                        name= "locations" 
-                        id= "locations" 
-                        type="text"                              
-                        formControlName="locations"
-                        class="form-control"
-                        />
-                        
-                        <ng-container formArrayName="atv_name" >
+                        <input name="locations" id="locations" type="text" formControlName="locations"
+                            class="form-control" />
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label for="atividade">Atividade</label>
+                                <input name="atividade" formControlName="atividade" type="text" class="form-control" />
+                                
+                            </div>
+                            <div class="col-md-4 mt-4"><button class="btn btn-primary" style="background-color:mediumpurple;" (click)="addOrRemoveAtv($event)">+ Adicionar</button></div>
+                        </div>
+
+
+
+
+                        <!--  <ng-container formArrayName="atv_name" >
                             <div *ngFor="let objeto of this.arrayControls; index as i" >
                                 <label>Atividades</label>
                                 <input 
@@ -32,32 +33,35 @@
                                 class="form-control"
                                 />
                             </div>
-                        </ng-container>
-                        
+                        </ng-container> -->
+
                     </div>
-                        
+
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-3">   
+                    <div class="col-sm-3">
                         <label for="start">Entrada</label>
-                        <input 
-                        class="customDate"
-                        type="time" 
-                        id="start" 
-                        formControlName="start" 
-                        name= "start"/>
-                  
+                        <input class="customDate" type="time" id="start" formControlName="start" name="start" />
+
                         <label for="end">Saida</label>
-                        <input 
-                        class="customDate"
-                        type="time" 
-                        id="end" 
-                        formControlName="end" 
-                        name= "end"/>
+                        <input class="customDate" type="time" id="end" formControlName="end" name="end" />
+                        
+                        <div class="row mt-3" *ngFor="let _ of this.reminder.value.atv_name; index as i" >
+                            <div class="col-md-9">
+                                <div class="alert alert-primary" role="alert">
+                                    {{_}}
+                                  </div>
+                            </div>
+                            <div class="col-md-3 mt-2">
+                                <button class="btn btn-primary" style="background-color:red;" (click)="addOrRemoveAtv($event,i)">Deletar
+                                    </button>
+                            </div>
+                        </div>
                     </div>
-                </div>       
-                <br>         
-                <button class="btn btn-primary" style="background-color:mediumpurple;" type="submit">Criar lembrete</button>
+                </div>
+                <br>
+                <button class="btn btn-primary" style="background-color:mediumpurple;" type="submit">Criar
+                    lembrete</button>
             </div>
         </div>
 
@@ -68,7 +72,8 @@
         <div class="row g-0">
 
             <div class="col-md-4">
-                <img src="./../../../assets/image/gabriele-garanzelli-PzO_CitnJdI-unsplash.jpg" width="200px" height="200px">
+                <img src="./../../../assets/image/gabriele-garanzelli-PzO_CitnJdI-unsplash.jpg" width="200px"
+                    height="200px">
             </div>
 
             <div class="col-md-8">
@@ -87,5 +92,4 @@
         Logout&nbsp;<fa-icon [icon]="faSignOutAlt"></fa-icon>
     </a>
 
-    <a (click)="addOrRemoveAtv()">Clike</a>
     <a (click)="teste()">Clike2</a>
