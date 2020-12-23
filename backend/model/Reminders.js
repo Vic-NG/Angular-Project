@@ -21,8 +21,7 @@ const timeType = {
 }
 
 const atvType = {
-  id: Number,
-  name: String
+  type: Array
 }
 
 const ReminderSchema = new Schema({

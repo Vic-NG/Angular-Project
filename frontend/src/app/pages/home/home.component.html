@@ -22,15 +22,18 @@
                         formControlName="locations"
                         class="form-control"
                         />
-                       
-                        <label for="atv_name">Atividades</label>
-                        <input 
-                        name= "atv_name"  
-                        id= "atv_name"  
-                        type="text"                              
-                        class="form-control"
-                        formControlName="atv_name"
-                        />
+                        
+                        <ng-container formArrayName="atv_name" >
+                            <div *ngFor="let objeto of this.arrayControls; index as i" >
+                                <label>Atividades</label>
+                                <input 
+                                [formControlName]="i" 
+                                type="text" 
+                                class="form-control"
+                                />
+                            </div>
+                        </ng-container>
+                        
                     </div>
                         
                     <div class="col-sm-1"></div>
@@ -70,7 +73,7 @@
 
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{ item.locations }}&nbsp;-&nbsp;{{ item.day }}</h5>
+                    <h5 class="card-title">{{ item.locations }}&nbsp;-&nbsp;{{ item.day | date: 'd//yy, h:mm a' }}</h5>
                     <p class="card-text">Atividades:&nbsp;{{ item.atv_name.join(', ')}}</p>
                     <p class="card-text"><small class="text-muted">Entrada:&nbsp;{{ item.start}}</small></p>
                     <p class="card-text"><small class="text-muted">Saida:&nbsp;{{ item.end}}</small></p>
@@ -84,8 +87,5 @@
         Logout&nbsp;<fa-icon [icon]="faSignOutAlt"></fa-icon>
     </a>
 
-
-    <div formArrayName="atv_name">
-        <div class="row" *ngFor="let atvs of reminder.get('atv_name').controls; let i = index"
-            [formGroupName]="i">
-</div>
+    <a (click)="addOrRemoveAtv()">Clike</a>
+    <a (click)="teste()">Clike2</a>

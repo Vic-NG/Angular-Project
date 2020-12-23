@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   spinners = true;
   faCalendarDay = faCalendarDay;
   faSignOutAlt = faSignOutAlt; 
+  arrayControls;
   
   // model: NgbDateStruct;
 
@@ -34,18 +35,13 @@ export class HomeComponent implements OnInit {
     private formBuilder: FormBuilder,
   ) { }
   
-  private createAtvFormGroup(): FormGroup {
-    return new FormGroup({
-      'atividade': new FormControl('', Validators.required),
-    })
-  }
-
-  public addOrRemoveAtv() {
+  addOrRemoveAtv() {
     const atv_name = this.reminder.get('atv_name') as FormArray
-    atv_name.push(this.createAtvFormGroup());
+    atv_name.push(new FormControl('', Validators.required));
+    console.log(atv_name);
   }
 
-  public removeOrClearEmail(i: number) {
+  removeOrClearEmail(i: number) {
     const atv_name = this.reminder.get('emails') as FormArray
     if (atv_name.length > 1) {
       atv_name.removeAt(i);
@@ -53,6 +49,11 @@ export class HomeComponent implements OnInit {
       atv_name.reset();
     }
   } 
+
+
+  teste() {
+    console.log(this.reminder);
+  }
 
   // Função de submit do form com validações
   onSubmit() {
@@ -125,7 +126,9 @@ export class HomeComponent implements OnInit {
       day: [null, [Validators.required]],
       start: [null, [Validators.required]],
       end: [null, [Validators.required]],
-      atv_name: this.formBuilder.array([this.createAtvFormGroup()])
+      atv_name: new FormArray([])
     });
+
+    this.arrayControls =  (this.reminder.get('atv_name') as FormArray)  .controls;
   }
 }
