@@ -16,6 +16,7 @@ export class CadastroComponent implements OnInit {
   
   formRegister: FormGroup;
   check: any = [];
+  loadingRequest:boolean = false;
 
   constructor(
     private toastr: ToastrService,
@@ -36,7 +37,7 @@ export class CadastroComponent implements OnInit {
       })
       return;
     } 
-
+    this.loadingRequest = !this.loadingRequest;
     this.service.registerService(this.formRegister.value).subscribe(
       (dados) => {
         this.toastr.success('Conta criada com sucesso!');
@@ -47,7 +48,8 @@ export class CadastroComponent implements OnInit {
         console.log(dados);
       },
       (error: any) => 
-      this.toastr.warning(error.error.message)
+      {this.toastr.warning(error.error.message);this.loadingRequest = false},
+      () => {}
       
     );
   }

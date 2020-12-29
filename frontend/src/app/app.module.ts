@@ -1,3 +1,4 @@
+import { AuthInterceptor } from './guard/auth.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { CadastroModule } from './pages/cadastro/cadastro.module';
 import { LoginModule } from './pages/login/login.module';
@@ -9,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -41,7 +42,7 @@ import { TestesComponent } from './pages/testes/testes.component';
     ReactiveFormsModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

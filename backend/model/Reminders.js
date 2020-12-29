@@ -7,7 +7,7 @@ var formatedDate = moment.tz(Date.now(), "America/Campo_Grande");
 console.log(formatedDate);
 
 const reqString = {
-  type: String, 
+  type: String,
   required: true
 };
 
@@ -25,12 +25,13 @@ const atvType = {
 }
 
 const ReminderSchema = new Schema({
-    locations: reqString,
-    day: dateType,
-    atv_name: [atvType],
-    start: timeType,
-    end: timeType,
-    created: { type: Date, default: Date.now },
+  locations: reqString,
+  day: dateType,
+  atv_name: [atvType],
+  start: timeType,
+  end: timeType,
+  created: { type: Date, default: Date.now },
+  userId: { type: String, required: true }
 });
 
 module.exports = mongoose.model("Reminder", ReminderSchema);

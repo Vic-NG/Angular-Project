@@ -1,4 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './../../guard/auth.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterService } from '../../services/register.service';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,6 @@ import { CadastroComponent } from './cadastro.component';
     SharedModule,
     HttpClientModule,
   ],
-  providers: [RegisterService],
+  providers: [RegisterService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
 })
-export class CadastroModule {}
+export class CadastroModule { }

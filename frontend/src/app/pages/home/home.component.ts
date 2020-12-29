@@ -21,11 +21,11 @@ import { faCalendarDay, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 export class HomeComponent implements OnInit {
   reminderList: any[] = [];
   reminder: FormGroup;
-  spinners = true;
+  modal: boolean = false;
   faCalendarDay = faCalendarDay;
-  faSignOutAlt = faSignOutAlt; 
+  faSignOutAlt = faSignOutAlt;
 
-  
+
   // model: NgbDateStruct;
 
   constructor(
@@ -34,22 +34,6 @@ export class HomeComponent implements OnInit {
     private service: ReminderService,
     private formBuilder: FormBuilder,
   ) { }
-  
-  
-
-  removeOrClearEmail(i: number) {
-    const atv_name = this.reminder.get('emails') as FormArray
-    if (atv_name.length > 1) {
-      atv_name.removeAt(i);
-    } else {
-      atv_name.reset();
-    }
-  } 
-
-
-  teste() {
-    console.log(this.reminder);
-  }
 
   // Função de submit do form com validações
   onSubmit() {
@@ -66,14 +50,21 @@ export class HomeComponent implements OnInit {
     }
 
     // Chama a rota de criação de um lembrete
-    let body = {...this.reminder.value};
+    let body = { ...this.reminder.value };
     delete body["atividade"];
     this.service.newReminder(body).subscribe(
       (dados: any) => {
         console.log(dados);
         this.toastr.success(dados.message);
         this.getListReminder();
-        //this.router.navigateByUrl('/home');
+        this.reminder.reset(this.reminder = this.formBuilder.group({
+          locations: ['', [Validators.required]],
+          day: ['', [Validators.required]],
+          start: ['', [Validators.required]],
+          end: ['', [Validators.required]],
+          atv_name: [[], Validators.required],
+          atividade: ['', []]
+        }));
       },
       (err: any) => this.toastr.error(err.error.message)
     );
@@ -83,6 +74,7 @@ export class HomeComponent implements OnInit {
   getListReminder() {
     this.service.getReminders().subscribe(
       (dados: any) => {
+        console.log(dados);
         this.reminderList = dados.map(x => {
           x.day = new Date(x.day);
           return x;
@@ -90,7 +82,7 @@ export class HomeComponent implements OnInit {
         console.log(dados);
       },
       (err: any) => {
-        this.toastr.warning(err.error.message);
+        this.toastr.warning(err.message);
       }
     );
   }
@@ -127,8 +119,8 @@ export class HomeComponent implements OnInit {
       day: ['', [Validators.required]],
       start: ['', [Validators.required]],
       end: ['', [Validators.required]],
-      atv_name: [[],Validators.required],
-      atividade:['',[]]
+      atv_name: [[], Validators.required],
+      atividade: ['', []]
     });
     /* this.reminder = this.formBuilder.group({
       locations: [null, [Validators.required]],
@@ -141,19 +133,25 @@ export class HomeComponent implements OnInit {
     this.arrayControls =  (this.reminder.get('atv_name') as FormArray)  .controls; */
   }
 
-  addOrRemoveAtv(e,index = "false") {
+  addOrRemoveAtv(e, index = "false") {
     e.preventDefault();
-  
+
     let atividade = this.reminder.controls.atividade.value;
     let lista = this.reminder.controls.atv_name.value;
-    if(index != "false"){
-      lista.splice(index,1);
-      this.reminder.patchValue({atv_name:lista});
-    }else{
-      if(!atividade) return;
+
+    console.log(lista)
+    if (index != "false") {
+      lista.splice(index, 1);
+      this.reminder.patchValue({ atv_name: lista });
+    } else {
+      if (!atividade) return;
       lista.push(atividade);
-      this.reminder.patchValue({atv_name:lista,atividade:''});
+      this.reminder.patchValue({ atv_name: lista, atividade: '' });
     }
-    
+
   }
+
+    openModal(){
+     this.modal = true; 
+    }
 }

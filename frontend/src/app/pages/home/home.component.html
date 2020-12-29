@@ -20,21 +20,6 @@
                             </div>
                             <div class="col-md-4 mt-4"><button class="btn btn-primary" style="background-color:mediumpurple;" (click)="addOrRemoveAtv($event)">+ Adicionar</button></div>
                         </div>
-
-
-
-
-                        <!--  <ng-container formArrayName="atv_name" >
-                            <div *ngFor="let objeto of this.arrayControls; index as i" >
-                                <label>Atividades</label>
-                                <input 
-                                [formControlName]="i" 
-                                type="text" 
-                                class="form-control"
-                                />
-                            </div>
-                        </ng-container> -->
-
                     </div>
 
                     <div class="col-sm-1"></div>
@@ -61,7 +46,8 @@
                 </div>
                 <br>
                 <button class="btn btn-primary" style="background-color:mediumpurple;" type="submit">Criar
-                    lembrete</button>
+                    lembrete
+                </button>
             </div>
         </div>
 
@@ -78,7 +64,7 @@
 
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{ item.locations }}&nbsp;-&nbsp;{{ item.day | date: 'MMMM d, y, h:mm:ss a z' }}</h5>
+                    <h5 class="card-title">{{ item.locations }}&nbsp;-&nbsp;{{ item.day | date: 'MMMM d, y' }}</h5>
                     <p class="card-text">Atividades:&nbsp;{{ item.atv_name.join(', ')}}</p>
                     <p class="card-text"><small class="text-muted">Entrada:&nbsp;{{ item.start}}</small></p>
                     <p class="card-text"><small class="text-muted">Saida:&nbsp;{{ item.end}}</small></p>
@@ -92,4 +78,27 @@
         Logout&nbsp;<fa-icon [icon]="faSignOutAlt"></fa-icon>
     </a>
 
-    <a (click)="teste()">Clike2</a>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
+        Launch demo modal
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>

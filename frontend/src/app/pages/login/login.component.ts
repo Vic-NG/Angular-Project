@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
       (dados:any) => {
         if (!dados?.token) return;
         localStorage.setItem('token', dados.token);
+        localStorage.setItem('user',JSON.stringify(dados.user));
         this.router.navigateByUrl('/home');
         console.log(dados);
       },

@@ -65,8 +65,10 @@
         </div>
         <div class="col"></div>
       </div>
-
-      <div class="row" style="text-align: center;">
+      <div class="row" style="text-align: center;" *ngIf="loadingRequest">
+        <h1> CARREGANDO</h1>
+      </div>
+      <div class="row" style="text-align: center;" *ngIf="!loadingRequest">
         <div class="col">
           <button 
             class="btn waves-effect waves-light" 
