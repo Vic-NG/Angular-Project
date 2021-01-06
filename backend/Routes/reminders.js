@@ -32,20 +32,21 @@ router.post('/new', auth, async (req, res) => {
 
 });
 
-router.put('/update/:id', auth, async (req, res) => {
+router.put('/update', auth, async (req, res) => {
 
-    var id = req.params.id;
+    var id = req.body._id;
     const user_id = req.headers.userid;
     await Reminders.findOne({ _id: id, userId: user_id }, (err, foundObject) => {
         if (err) return res.status(500).send({ message: "Erro ao encontrar dados." });
 
         if (!foundObject) return res.status(404).send({ message: 'Objeto não encontrado.' });
-
-        foundObject.reminder = req.body.reminder;
-
+        console.log(foundObject);
+        foundObject.start = req.body.start;
+        foundObject.end = req.body.end;
+        foundObject.atv_name = req.body.atv_name;
         foundObject.save((err, updateObject) => {
             if (err) return res.status(500).send({ message: "Erro ao atualizar dados." });
-            res.send(updateObject);
+            res.send({...updateObject,message:"Atualizado com sucesso"});
         });
     });
 

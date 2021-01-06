@@ -63,13 +63,13 @@
 
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{ item.locations }}&nbsp;-&nbsp;{{ item.day | date: 'MMMM d, y' }}</h5>
+                    <h5 class="card-title">{{ item.locations }}&nbsp;-&nbsp;{{ currentDate(item.day) | date:'dd/MM/yyyy'}}</h5>
                     <p class="card-text">Atividades:&nbsp;{{ item.atv_name.join(', ')}}</p>
                     <p class="card-text"><small class="text-muted">Entrada:&nbsp;{{ item.start}}</small></p>
                     <p class="card-text"><small class="text-muted">Saida:&nbsp;{{ item.end}}</small></p>
                     <button class="btn btn-danger" (click)="delReminder($event, item._id)">DELETAR LEMBRETE</button>
                     &nbsp;
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >EDITAR</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" (click)="fillForm(item)" data-target="#exampleModal" >EDITAR</button>
                 </div>
             </div>
         </div>
@@ -78,71 +78,62 @@
     <a class="btn btn-primary" (click)="logoutApplication($event)">Logout&nbsp;<fa-icon [icon]="faSignOutAlt"></fa-icon></a>
 
 
-    <form [formGroup]="reminderUpdate" (ngSubmit)="updateReminder()">
+    <form [formGroup]="this.reminderUpdate" (ngSubmit)="updateReminder()">
          <!-- Modal -->
          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document" *ngFor="let item of reminderList">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{ item.locations }}&nbsp;-&nbsp;{{ item.day | date: 'MMMM d, y' }}</h5>
-                        <span style="cursor: pointer;">
-                            <fa-icon class="close" data-dismiss="modal" aria-label="Close" [icon]="faWindowClose"></fa-icon>
-                        </span>
+                        <h5 class="modal-title" id="exampleModalLabel">Editar Informações</h5>
                     </div>
 
                     <div class="modal-body">
+                      
+                        <div class="col">
+                            <label for="day"><b>Data</b></label>
+                            <input class="customDate" type="date" disabled id="day" formControlName="day" name="day" />
+                            <br>
+                            <label for="locations"><b>Local</b></label>
+                            <input name="locations" id="locations" disabled type="text" formControlName="locations" class="form-control" />
+                            
+                        </div>
+
+                        <div class="col">
+                            <label for="start"><b>Entrada</b></label>
+                            <input class="customDate" type="time" id="start" formControlName="start" name="start" />
+    
+                            <label for="end"><b>Saida</b></label>
+                            <input class="customDate" type="time" id="end" formControlName="end" name="end" />
+                        </div>
+                        
                         <div class="row">
-                            <div class="col-sm-2">
-                                <label for="atividade"><b>Atividades:</b></label>
+                            <div class="col-md-8">
+                                <label for="atividade"><b>Atividades</b></label>
+                                <input name="atividade" formControlName="atividade" type="text" class="form-control" />
                             </div>
-                            &nbsp;
-                            <div class="col-sm-6">
-                                <input name="atividade" type="text" class="form-control" />
-                            </div>
-                            <div class="col-sm-2">
-                                <a style="cursor: pointer" (click)="addOrRemoveAtv($event)">
-                                    <fa-icon [icon]="faPlusCircle"></fa-icon>
+                            <div class="col-md-4 mt-4">
+                                <a (click)="addOrRemoveAtvEdit($event)">
+                                    <fa-icon style="font-size: 25px; cursor:pointer" [icon]="faPlusCircle"></fa-icon>
                                 </a>
                             </div>
-                        
-                            <div class="row mt-3" *ngFor="let _ of this.reminder.value.atv_name; index as i" >
-                                <div class="col-md-9">
-                                    <div class="alert alert-primary" role="alert">
-                                        {{_}}
+                            <div class="col">
+                                <div class="row mt-3" *ngFor="let _ of this.reminderUpdate.value.atv_name; index as i" >
+                                    <div class="col">
+                                        <div class="alert alert-info" role="alert">
+                                            {{_}}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mt-2">
+                                        <a (click)="addOrRemoveAtvEdit($event,i)"><fa-icon style="color:firebrick; font-size: 25px; cursor:pointer" [icon]="faTimes"></fa-icon></a>
                                     </div>
                                 </div>
-                                <div class="col-md-3 mt-2">
-                                    <button class="btn btn-primary" style="background-color:red;" (click)="addOrRemoveAtv($event,i)">Deletar</button>
-                                </div>
                             </div>
                         </div>
-
-                        <br>
-
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <label for="start"><b>Entrada:</b></label>
-                            </div>
-                            &nbsp;
-                            <div class="col-sm-6">
-                                <input class="customDate" type="time" id="start" formControlName="start" name="start" />
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <label for="end"><b>Saida:</b></label>
-                            </div>
-                            &nbsp;
-                            <div class="col-sm-6">
-                                <input class="customDate" type="time" id="end" formControlName="end" name="end" />
-                            </div>
-                        </div>             
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">FECHAR</button>
-                        <button type="button" class="btn btn-primary" (submit)="updateReminder()">SALVAR ALTERAÇÕES</button>
+                        <button type="button" #closeModal class="btn btn-secondary" data-dismiss="modal">FECHAR</button>
+                        <button type="submit" class="btn btn-primary" (submit)="updateReminder()">SALVAR ALTERAÇÕES</button>
                     </div>
                 </div>
             </div>

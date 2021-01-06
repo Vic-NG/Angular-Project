@@ -1,6 +1,8 @@
 import {
   Component,
+  ElementRef,
   OnInit,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { ReminderService } from '../../services/reminder.service';
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 
 
 import { ToastrService } from 'ngx-toastr';
-import { faCalendarDay, faSignOutAlt, faWindowClose, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDay, faSignOutAlt, faWindowClose, faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -25,12 +27,13 @@ export class HomeComponent implements OnInit {
   modal: boolean = false;
   faCalendarDay = faCalendarDay;
   faSignOutAlt = faSignOutAlt;
-  faWindowClose = faWindowClose; 
+  faWindowClose = faWindowClose;
   faPlusCircle = faPlusCircle;
+  faTimes = faTimes;
 
 
   // model: NgbDateStruct;
-
+  @ViewChild('closeModal') closeModal: ElementRef;
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -90,22 +93,37 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  updateReminder(_id: any, body: any){  
+  fillForm(obj) {
+    console.log(obj);
+    this.reminderUpdate = this.formBuilder.group({
+      locations: [obj.locations, [Validators.required]],
+      day: [this.currentDate(obj.day), [Validators.required]],
+      start: [obj.start, [Validators.required]],
+      end: [obj.end, [Validators.required]],
+      atv_name: [obj.atv_name || [], Validators.required],
+      atividade: ['', []],
+      _id: [obj._id, []]
+    });
+
+  }
+
+  currentDate(date) {
+    const currentDate = new Date(date);
+
+    return currentDate.toISOString().substring(0,10);
+  }
+
+  updateReminder() {
     let bodyUpdate = { ...this.reminderUpdate.value };
-    delete body["atividade"];
+    console.log(bodyUpdate);
+    delete bodyUpdate["atividade"];
     this.service.updateReminder(bodyUpdate).subscribe(
       (dados: any) => {
         console.log(dados);
         this.toastr.success(dados.message);
         this.getListReminder();
-        this.reminderUpdate.reset(this.reminderUpdate = this.formBuilder.group({
-          locations: ['', [Validators.required]],
-          day: ['', [Validators.required]],
-          start: ['', [Validators.required]],
-          end: ['', [Validators.required]],
-          atv_name: [[], Validators.required],
-          atividade: ['', []]
-        }));
+        this.closeModal.nativeElement.click();
+       
       },
       (err: any) => this.toastr.error(err.error.message)
     );
@@ -146,6 +164,16 @@ export class HomeComponent implements OnInit {
       atv_name: [[], Validators.required],
       atividade: ['', []]
     });
+    this.reminderUpdate = this.formBuilder.group({
+      locations: ['', [Validators.required]],
+      day: ['', [Validators.required]],
+      start: ['', [Validators.required]],
+      end: ['', [Validators.required]],
+      atv_name: [[], Validators.required],
+      atividade: ['', []],
+      _id:['',[]]
+    })
+
     /* this.reminder = this.formBuilder.group({
       locations: [null, [Validators.required]],
       day: [null, [Validators.required]],
@@ -175,7 +203,26 @@ export class HomeComponent implements OnInit {
 
   }
 
-    openModal(){
-     this.modal = true; 
+  addOrRemoveAtvEdit(e, index = "false") {
+
+    e.preventDefault();
+
+    console.log(this.reminderUpdate);
+
+    let atividade = this.reminderUpdate.controls.atividade.value;
+    let lista = this.reminderUpdate.controls.atv_name.value;
+
+    console.log(lista)
+    if (index != "false") {
+      lista.splice(index, 1);
+      this.reminderUpdate.patchValue({ atv_name: lista });
+    } else {
+      if (!atividade) return;
+      lista.push(atividade);
+      this.reminderUpdate.patchValue({ atv_name: lista, atividade: '' });
     }
+
+  }
+
+
 }
