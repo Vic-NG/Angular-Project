@@ -10,15 +10,15 @@
                         <input class="customDate" type="date" id="day" formControlName="day" name="day" />
                         <br>
                         <label for="locations">Local</label>
-                        <input name="locations" id="locations" type="text" formControlName="locations"
-                            class="form-control" />
+                        <input name="locations" id="locations" type="text" formControlName="locations" class="form-control" />
                         <div class="row">
                             <div class="col-md-8">
-                                <label for="atividade">Atividade</label>
+                                <label for="atividade">Atividades</label>
                                 <input name="atividade" formControlName="atividade" type="text" class="form-control" />
-                                
                             </div>
-                            <div class="col-md-4 mt-4"><button class="btn btn-primary" style="background-color:mediumpurple;" (click)="addOrRemoveAtv($event)">+ Adicionar</button></div>
+                            <div class="col-md-4 mt-4">
+                                <button class="btn btn-primary" style="background-color:mediumpurple;" (click)="addOrRemoveAtv($event)">+ Adicionar</button>
+                            </div>
                         </div>
                     </div>
 
@@ -35,31 +35,30 @@
                             <div class="col-md-9">
                                 <div class="alert alert-primary" role="alert">
                                     {{_}}
-                                  </div>
+                                </div>
                             </div>
                             <div class="col-md-3 mt-2">
-                                <button class="btn btn-primary" style="background-color:red;" (click)="addOrRemoveAtv($event,i)">Deletar
-                                    </button>
+                                <button class="btn btn-primary" style="background-color:red;" (click)="addOrRemoveAtv($event,i)">Deletar</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <br>
-                <button class="btn btn-primary" style="background-color:mediumpurple;" type="submit">Criar
-                    lembrete
+                <button class="btn btn-primary" style="background-color:mediumpurple;" type="submit">
+                    Criar lembrete
                 </button>
             </div>
         </div>
-
     </form>
+
     <br>
+
     <div class="card mb-3" *ngFor="let item of reminderList">
 
         <div class="row g-0">
 
             <div class="col-md-4">
-                <img src="./../../../assets/image/gabriele-garanzelli-PzO_CitnJdI-unsplash.jpg" width="200px"
-                    height="200px">
+                <img src="./../../../assets/image/gabriele-garanzelli-PzO_CitnJdI-unsplash.jpg" width="200px" height="200px">
             </div>
 
             <div class="col-md-8">
@@ -69,36 +68,84 @@
                     <p class="card-text"><small class="text-muted">Entrada:&nbsp;{{ item.start}}</small></p>
                     <p class="card-text"><small class="text-muted">Saida:&nbsp;{{ item.end}}</small></p>
                     <button class="btn btn-danger" (click)="delReminder($event, item._id)">DELETAR LEMBRETE</button>
+                    &nbsp;
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >EDITAR</button>
                 </div>
             </div>
         </div>
     </div>
     <br>
-    <a class="btn btn-primary" (click)="logoutApplication($event)">
-        Logout&nbsp;<fa-icon [icon]="faSignOutAlt"></fa-icon>
-    </a>
+    <a class="btn btn-primary" (click)="logoutApplication($event)">Logout&nbsp;<fa-icon [icon]="faSignOutAlt"></fa-icon></a>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
-        Launch demo modal
-      </button>
-      
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+
+    <form [formGroup]="reminderUpdate" (ngSubmit)="updateReminder()">
+         <!-- Modal -->
+         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document" *ngFor="let item of reminderList">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ item.locations }}&nbsp;-&nbsp;{{ item.day | date: 'MMMM d, y' }}</h5>
+                        <span style="cursor: pointer;">
+                            <fa-icon class="close" data-dismiss="modal" aria-label="Close" [icon]="faWindowClose"></fa-icon>
+                        </span>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label for="atividade"><b>Atividades:</b></label>
+                            </div>
+                            &nbsp;
+                            <div class="col-sm-6">
+                                <input name="atividade" type="text" class="form-control" />
+                            </div>
+                            <div class="col-sm-2">
+                                <a style="cursor: pointer" (click)="addOrRemoveAtv($event)">
+                                    <fa-icon [icon]="faPlusCircle"></fa-icon>
+                                </a>
+                            </div>
+                        
+                            <div class="row mt-3" *ngFor="let _ of this.reminder.value.atv_name; index as i" >
+                                <div class="col-md-9">
+                                    <div class="alert alert-primary" role="alert">
+                                        {{_}}
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mt-2">
+                                    <button class="btn btn-primary" style="background-color:red;" (click)="addOrRemoveAtv($event,i)">Deletar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label for="start"><b>Entrada:</b></label>
+                            </div>
+                            &nbsp;
+                            <div class="col-sm-6">
+                                <input class="customDate" type="time" id="start" formControlName="start" name="start" />
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label for="end"><b>Saida:</b></label>
+                            </div>
+                            &nbsp;
+                            <div class="col-sm-6">
+                                <input class="customDate" type="time" id="end" formControlName="end" name="end" />
+                            </div>
+                        </div>             
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">FECHAR</button>
+                        <button type="button" class="btn btn-primary" (submit)="updateReminder()">SALVAR ALTERAÇÕES</button>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </form>
+</div>

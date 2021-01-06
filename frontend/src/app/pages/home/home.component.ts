@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 
 import { ToastrService } from 'ngx-toastr';
-import { faCalendarDay, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDay, faSignOutAlt, faWindowClose, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -21,9 +21,12 @@ import { faCalendarDay, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 export class HomeComponent implements OnInit {
   reminderList: any[] = [];
   reminder: FormGroup;
+  reminderUpdate: FormGroup;
   modal: boolean = false;
   faCalendarDay = faCalendarDay;
   faSignOutAlt = faSignOutAlt;
+  faWindowClose = faWindowClose; 
+  faPlusCircle = faPlusCircle;
 
 
   // model: NgbDateStruct;
@@ -84,6 +87,27 @@ export class HomeComponent implements OnInit {
       (err: any) => {
         this.toastr.warning(err.message);
       }
+    );
+  }
+
+  updateReminder(_id: any, body: any){  
+    let bodyUpdate = { ...this.reminderUpdate.value };
+    delete body["atividade"];
+    this.service.updateReminder(bodyUpdate).subscribe(
+      (dados: any) => {
+        console.log(dados);
+        this.toastr.success(dados.message);
+        this.getListReminder();
+        this.reminderUpdate.reset(this.reminderUpdate = this.formBuilder.group({
+          locations: ['', [Validators.required]],
+          day: ['', [Validators.required]],
+          start: ['', [Validators.required]],
+          end: ['', [Validators.required]],
+          atv_name: [[], Validators.required],
+          atividade: ['', []]
+        }));
+      },
+      (err: any) => this.toastr.error(err.error.message)
     );
   }
 

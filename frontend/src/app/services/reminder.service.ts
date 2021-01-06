@@ -19,12 +19,12 @@ export class ReminderService {
     return this.http.get(`${this.url}`);
   }
 
-  newReminder(x) {
+  newReminder(x: any) {
     return this.http.post(`${this.url}/new`, x);
   }
 
-  updateReminder(x) {
-    return this.http.put(`${this.url}/update`, x);
+  updateReminder(_id: string, body: any) {
+    return this.http.put(`${this.url}/update/${_id}`, body);
   }
 
   deleteReminder(_id: string): Observable<void>{
