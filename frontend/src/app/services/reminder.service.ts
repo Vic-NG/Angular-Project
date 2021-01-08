@@ -30,4 +30,9 @@ export class ReminderService {
   deleteReminder(_id: string): Observable<void>{
     return this.http.delete<void>(`${this.url}/delete/${_id}`);
   }
+
+  getUpdatedReminders(_id: string) {
+    return this.http.get(`${this.url}/${_id}`);
+  }
+
 }

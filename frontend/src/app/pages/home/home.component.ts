@@ -22,6 +22,7 @@ import { faCalendarDay, faSignOutAlt, faWindowClose, faPlusCircle, faTimes } fro
 
 export class HomeComponent implements OnInit {
   reminderList: any[] = [];
+  originalReminderList: any[] = [];
   reminder: FormGroup;
   reminderUpdate: FormGroup;
   modal: boolean = false;
@@ -34,6 +35,7 @@ export class HomeComponent implements OnInit {
 
   // model: NgbDateStruct;
   @ViewChild('closeModal') closeModal: ElementRef;
+
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -81,10 +83,12 @@ export class HomeComponent implements OnInit {
     this.service.getReminders().subscribe(
       (dados: any) => {
         console.log(dados);
-        this.reminderList = dados.map(x => {
+        let d = dados.map(x => {
           x.day = new Date(x.day);
           return x;
         });
+        this.reminderList = [...d];
+        this.originalReminderList = [...d];
         console.log(dados);
       },
       (err: any) => {
@@ -93,24 +97,32 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  fillForm(obj) {
-    console.log(obj);
-    this.reminderUpdate = this.formBuilder.group({
-      locations: [obj.locations, [Validators.required]],
-      day: [this.currentDate(obj.day), [Validators.required]],
-      start: [obj.start, [Validators.required]],
-      end: [obj.end, [Validators.required]],
-      atv_name: [obj.atv_name || [], Validators.required],
-      atividade: ['', []],
-      _id: [obj._id, []]
+  fillForm(item) {
+    this.service.getUpdatedReminders(item._id).subscribe((res: any) => {
+     const obj = res[0];
+     console.log(obj);
+     this.reminderUpdate = this.formBuilder.group({
+       locations: [obj.locations, [Validators.required]],
+       day: [this.currentDate(obj.day), [Validators.required]],
+       start: [obj.start, [Validators.required]],
+       end: [obj.end, [Validators.required]],
+       atv_name: [obj.atv_name || [], Validators.required],
+       atividade: ['', []],
+       _id: [obj._id, []]
+     });
     });
-
   }
 
-  currentDate(date) {
-    const currentDate = new Date(date);
+  currentDate(date = null) {
+    if (date) {
+      const currentDate = new Date(date);
+      return currentDate.toISOString().substring(0, 10);
+    } else {
+      const currentDate = new Date();
+      currentDate.setHours( currentDate.getHours() - 3 );
+      return currentDate.toISOString().substring(0, 10);
+    }
 
-    return currentDate.toISOString().substring(0,10);
   }
 
   updateReminder() {
@@ -123,7 +135,6 @@ export class HomeComponent implements OnInit {
         this.toastr.success(dados.message);
         this.getListReminder();
         this.closeModal.nativeElement.click();
-       
       },
       (err: any) => this.toastr.error(err.error.message)
     );
@@ -171,7 +182,7 @@ export class HomeComponent implements OnInit {
       end: ['', [Validators.required]],
       atv_name: [[], Validators.required],
       atividade: ['', []],
-      _id:['',[]]
+      _id: ['', []]
     })
 
     /* this.reminder = this.formBuilder.group({

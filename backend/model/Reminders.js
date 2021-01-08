@@ -1,10 +1,5 @@
 const mongoose = require("mongoose");
-const moment = require("moment-timezone");
 const Schema = mongoose.Schema;
-
-
-var formatedDate = moment.tz(Date.now(), "America/Campo_Grande");
-console.log(formatedDate);
 
 const reqString = {
   type: String,
@@ -13,7 +8,7 @@ const reqString = {
 
 const dateType = {
   type: Date,
-  default: formatedDate
+  default: Date.now
 };
 
 const timeType = {

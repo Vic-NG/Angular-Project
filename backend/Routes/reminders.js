@@ -14,6 +14,17 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+        const user_id = req.headers.userid;
+        const id = req.params.id;
+        const reminders = await Reminders.find({ _id: id, userId: user_id});
+        return res.send(reminders);
+    } catch (err) {
+        return res.status(500).send({ message: 'Erro ao editar!'});
+    }
+});
+
 router.post('/new', auth, async (req, res) => {
 
     const { locations, atv_name } = req.body;
@@ -45,7 +56,7 @@ router.put('/update', auth, async (req, res) => {
         foundObject.end = req.body.end;
         foundObject.atv_name = req.body.atv_name;
         foundObject.save((err, updateObject) => {
-            if (err) return res.status(500).send({ message: "Erro ao atualizar dados." });
+            if (err) return res.status(500).send({ message: "Erro ao atualizar dados." , error: err});
             res.send({...updateObject,message:"Atualizado com sucesso"});
         });
     });
