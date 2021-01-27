@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ubuntu-project": {
+    "angular-project": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -17,7 +17,7 @@
               "core-js",
               "lodash"
            ],
-            "outputPath": "dist/ubuntu-project",
+            "outputPath": "dist/angular-project",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -25,7 +25,8 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -65,25 +66,27 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ubuntu-project:build"
+            "browserTarget": "angular-project:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ubuntu-project:build:production"
+              "browserTarget": "angular-project:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ubuntu-project:build"
+            "browserTarget": "angular-project:build"
           }
         },
         "test": {
@@ -95,7 +98,8 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.css"
@@ -120,18 +124,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ubuntu-project:serve"
+            "devServerTarget": "angular-project:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ubuntu-project:serve:production"
+              "devServerTarget": "angular-project:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "ubuntu-project",
+  "defaultProject": "angular-project",
   "cli": {
     "analytics": "c755e8ae-0a84-4595-95df-7a606e2dc612"
   },
