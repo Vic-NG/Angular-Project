@@ -1,20 +1,21 @@
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login-service.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { faDoorOpen } from '@fortawesome/free-solid-svg-icons';
 
+import { LoginService } from '../../services/login-service.service';
+
+import { faDoorOpen } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css'], 
   encapsulation: ViewEncapsulation.None
  
 })
 export class LoginComponent implements OnInit {
-
+  
   login: FormGroup;
   faDoorOpen = faDoorOpen;
   
@@ -63,7 +64,6 @@ export class LoginComponent implements OnInit {
       'has-feedback': this.verificaValidTouched(campo),
     };
   }
-  
 
   ngOnInit() {
     localStorage.clear();

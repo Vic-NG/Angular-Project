@@ -8,7 +8,9 @@ import {
 import { ReminderService } from '../../services/reminder.service';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SwPush } from '@angular/service-worker';
 
+import { NewsletterService } from '../../services/newsletter.service';
 
 import { ToastrService } from 'ngx-toastr';
 import { faCalendarDay, faSignOutAlt, faWindowClose, faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -18,9 +20,13 @@ import { faCalendarDay, faSignOutAlt, faWindowClose, faPlusCircle, faTimes } fro
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   encapsulation: ViewEncapsulation.None,
+  providers:[NewsletterService]
 })
 
 export class HomeComponent implements OnInit {
+
+  readonly VAPID_PUBLIC_KEY = "BEZDwkpiNGvRomRNS6LwT54l6ECc0UbBJOxHjCYcSXGiduuVGwNTXc6e2GRpPU1Xo6njHQwn3Fdh9kWmHQyBlO4";
+  
   reminderList: any[] = [];
   originalReminderList: any[] = [];
   reminder: FormGroup;
@@ -41,6 +47,8 @@ export class HomeComponent implements OnInit {
     private toastr: ToastrService,
     private service: ReminderService,
     private formBuilder: FormBuilder,
+    private swPush: SwPush,
+    private newsLetterService: NewsletterService
   ) { }
 
   // Função de submit do form com validações
@@ -232,8 +240,14 @@ export class HomeComponent implements OnInit {
       lista.push(atividade);
       this.reminderUpdate.patchValue({ atv_name: lista, atividade: '' });
     }
-
   }
-
+  
+  subscribeToNotifications(){
+    this.swPush.requestSubscription({
+      serverPublicKey: this.VAPID_PUBLIC_KEY
+    })
+    .then(sub => this.newsLetterService.addPushSubscriber(sub).subscribe())
+    .catch(err => console.error('Não foi possível assinar notificações', err))
+  }
 
 }
